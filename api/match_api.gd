@@ -1,5 +1,7 @@
 extends Node
 
+class_name MatchAPI
+
 signal auth_received
 signal session_started
 signal time_synced

@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name MatchUIManager
+
 signal credentials_submitted
 
 @export var credentials_ui_path: String
