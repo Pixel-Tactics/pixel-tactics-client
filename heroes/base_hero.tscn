@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqa5hsnlj4ane"]
+
+[ext_resource type="Script" path="res://heroes/scripts/base_hero.gd" id="1_0bfib"]
+[ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_hainm"]
+
+[node name="BaseHero" type="Node2D"]
+script = ExtResource("1_0bfib")
+texture = ExtResource("2_hainm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

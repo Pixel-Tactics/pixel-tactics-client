@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://djwxrfyo63aj"]
+
+[ext_resource type="Script" path="res://ui/match_prepare_ui.gd" id="1_ldhp2"]
+[ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="5_rqxpr"]
+
+[node name="MatchPrepareUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ldhp2")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507
+anchor_top = 1.0
+anchor_right = 0.507
+anchor_bottom = 1.0
+offset_left = -136.064
+offset_top = -272.0
+offset_right = 119.936
+offset_bottom = -224.0
+text = "Choose"
+
+[node name="Timer" parent="." instance=ExtResource("5_rqxpr")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -72.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 77.0
+grow_horizontal = 1
+
+[node name="HeroList" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_top = -176.0
+offset_right = 264.0
+offset_bottom = -56.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="ChosenList" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 112.0
+offset_right = 120.0
+offset_bottom = 240.0
+theme_override_constants/h_separation = 32
+columns = 2

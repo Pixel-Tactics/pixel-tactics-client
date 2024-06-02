@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy5hxeot6rbua"]
+
+[ext_resource type="Texture2D" uid="uid://bxwn8teiixow" path="res://assets/ui/panel-transparent-center-031.png" id="1_370sc"]
+[ext_resource type="Script" path="res://ui/match/hero_button/hero_button.gd" id="2_lkoes"]
+[ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_tr436"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyki6"]
+font_size = 24
+
+[node name="HeroButton" type="NinePatchRect"]
+custom_minimum_size = Vector2(160, 40)
+offset_right = 160.0
+offset_bottom = 40.0
+texture = ExtResource("1_370sc")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+script = ExtResource("2_lkoes")
+
+[node name="Potrait" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 72.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tr436")
+
+[node name="HeroName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_right = -24.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 1
+text = "Base"
+label_settings = SubResource("LabelSettings_lyki6")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 40.0
+theme_type_variation = &"FlatButton"

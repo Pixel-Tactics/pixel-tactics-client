@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn8x0a5qdlllm"]
+
+[sub_resource type="Gradient" id="Gradient_s3mht"]
+colors = PackedColorArray(0, 0, 0, 1, 0.17, 0.695667, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2blg0"]
+gradient = SubResource("Gradient_s3mht")
+
+[sub_resource type="LabelSettings" id="LabelSettings_j2r03"]
+font_size = 36
+
+[node name="MatchLoadingUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_2blg0")
+region_rect = Rect2(14, 14, 20, 20)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -87.0
+offset_right = -37.0
+offset_bottom = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Loading..."
+label_settings = SubResource("LabelSettings_j2r03")

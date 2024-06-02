@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cxob7cpugow48"]
+
+[node name="BaseAttack" type="Node2D"]
