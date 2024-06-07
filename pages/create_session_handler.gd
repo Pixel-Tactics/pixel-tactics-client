@@ -11,11 +11,10 @@ func handle_incoming(message: Dictionary):
 		return
 	emit_signal("success_received")
 		
-func handle_error(message: Dictionary):
+func handle_error(_message: Dictionary):
 	emit_signal("error_received")
 
 func send(message: Dictionary, identifier: String, socket: WebSocketPeer):
-	print("SENT INVITATION")
 	progress_id = identifier
 	var msg = JSON.stringify({
 		"action": "CREATE_SESSION",

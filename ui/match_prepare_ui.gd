@@ -56,5 +56,4 @@ func _on_hero_remove(selected_hero: BaseHero):
 		_update_ui()
 
 func _on_submit():
-	print("SUBMITTED " + str(chosen_list))
 	emit_signal("submitted", chosen_list)

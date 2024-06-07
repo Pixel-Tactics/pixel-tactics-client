@@ -23,6 +23,5 @@ func update():
 		match_manager.change_match_state(LoadingPreparationState.new(match_manager))
 
 func _on_session_started(session_id: String):
-	print("STARTING " + session_id)
 	match_manager.match_data.id = session_id
 	session_started = true

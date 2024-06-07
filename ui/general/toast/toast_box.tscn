@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcf6jk0e0sk0c"]
+
+[ext_resource type="Script" path="res://ui/general/toast/toast_box.gd" id="1_1to6e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8ct0"]
+bg_color = Color(1, 0.466667, 0.419608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_vv1k1"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="ToastBox" type="Panel"]
+custom_minimum_size = Vector2(232, 104)
+offset_right = 232.0
+offset_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_w8ct0")
+script = ExtResource("1_1to6e")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 31.0
+text = "Error"
+label_settings = SubResource("LabelSettings_vv1k1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Contents" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 224.0
+offset_bottom = 96.0
+text = "LOREM IPSUM DOLOR SIT AMET APALAH ITU ASASD ADSDAS"
+label_settings = SubResource("LabelSettings_vv1k1")
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true

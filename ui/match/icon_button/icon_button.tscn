@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2bx4pglsjpg0"]
+
+[ext_resource type="Texture2D" uid="uid://bxwn8teiixow" path="res://assets/ui/panel-transparent-center-031.png" id="1_ovm7d"]
+[ext_resource type="Script" path="res://ui/match/icon_button/icon_button.gd" id="2_aqhpc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyki6"]
+font_size = 24
+
+[node name="HeroButton" type="NinePatchRect"]
+custom_minimum_size = Vector2(160, 40)
+offset_right = 160.0
+offset_bottom = 40.0
+texture = ExtResource("1_ovm7d")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+script = ExtResource("2_aqhpc")
+
+[node name="ButtonName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_right = -24.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 1
+text = "Button"
+label_settings = SubResource("LabelSettings_lyki6")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 40.0
+theme_type_variation = &"FlatButton"

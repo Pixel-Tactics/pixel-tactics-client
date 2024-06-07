@@ -1,21 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjbitbb4csx1v"]
+[gd_scene load_steps=18 format=3 uid="uid://bjbitbb4csx1v"]
 
 [ext_resource type="Script" path="res://pages/scripts/match_manager.gd" id="1_5c3rk"]
 [ext_resource type="Script" path="res://api/match_api.gd" id="2_cpgn1"]
 [ext_resource type="Script" path="res://pages/scripts/map_manager.gd" id="3_dwuy0"]
 [ext_resource type="Script" path="res://pages/auth_handler.gd" id="3_jlg3t"]
 [ext_resource type="Script" path="res://pages/start_session_handler.gd" id="4_hsqt1"]
-[ext_resource type="Texture2D" uid="uid://hsprakr5n27w" path="res://assets/tilemaps/tiny_battle.png" id="4_sjwxo"]
 [ext_resource type="Script" path="res://pages/scripts/match_ui_manager.gd" id="5_j4dqs"]
 [ext_resource type="Script" path="res://pages/create_session_handler.gd" id="5_smxfd"]
 [ext_resource type="Script" path="res://pages/server_time_handler.gd" id="6_cnear"]
 [ext_resource type="Script" path="res://pages/get_session_handler.gd" id="7_vj6mc"]
 [ext_resource type="Script" path="res://pages/prepare_player_handler.gd" id="8_n6hpr"]
-[ext_resource type="Script" path="res://pages/start_battle_handler.gd" id="9_7evf2"]
+[ext_resource type="Script" path="res://pages/state_change_handler.gd" id="9_7evf2"]
+[ext_resource type="Script" path="res://pages/execute_action_handler.gd" id="10_hhrlk"]
+[ext_resource type="Script" path="res://pages/apply_action_handler.gd" id="11_2md87"]
+[ext_resource type="Texture2D" uid="uid://du7x6wmacft63" path="res://assets/tilemaps/tiny_battle_rescaled.png" id="11_335no"]
+[ext_resource type="Script" path="res://pages/end_turn_handler.gd" id="12_srp5i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c614n"]
 resource_name = "terrain"
-texture = ExtResource("4_sjwxo")
+texture = ExtResource("11_335no")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -396,6 +400,7 @@ texture = ExtResource("4_sjwxo")
 1:2/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_puxqp"]
+tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 1"
 terrain_set_0/terrain_0/color = Color(0.5, 0.4375, 0.25, 1)
@@ -429,8 +434,17 @@ script = ExtResource("7_vj6mc")
 [node name="PreparePlayerHandler" type="Node" parent="MatchAPI"]
 script = ExtResource("8_n6hpr")
 
-[node name="StartBattleHandler" type="Node" parent="MatchAPI"]
+[node name="StateChangeHandler" type="Node" parent="MatchAPI"]
 script = ExtResource("9_7evf2")
+
+[node name="ExecuteActionHandler" type="Node" parent="MatchAPI"]
+script = ExtResource("10_hhrlk")
+
+[node name="ApplyActionHandler" type="Node" parent="MatchAPI"]
+script = ExtResource("11_2md87")
+
+[node name="EndTurnHandler" type="Node" parent="MatchAPI"]
+script = ExtResource("12_srp5i")
 
 [node name="Map" type="Node" parent="."]
 script = ExtResource("3_dwuy0")
@@ -443,11 +457,17 @@ layer_1/name = "objects"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 
+[node name="ActionTiles" type="Node2D" parent="Map"]
+
+[node name="Heroes" type="Node2D" parent="Map"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+position = Vector2(152, 160)
+zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_j4dqs")
 credentials_ui_path = "res://ui/credentials.tscn"
 loading_ui_path = "res://ui/match_loading_ui.tscn"
 prepare_ui_path = "res://ui/match_prepare_ui.tscn"
+battle_ui_path = "res://ui/match_battle_ui.tscn"

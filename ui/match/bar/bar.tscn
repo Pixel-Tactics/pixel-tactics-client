@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://o1i8g57rg0ul"]
+
+[ext_resource type="Script" path="res://ui/match/bar/bar.gd" id="1_wgtp4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yae1c"]
+bg_color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sybm2"]
+bg_color = Color(1, 0.431373, 0.384314, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lekab"]
+
+[node name="Bar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 32.0
+script = ExtResource("1_wgtp4")
+
+[node name="Empty" type="Panel" parent="."]
+clip_children = 2
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yae1c")
+
+[node name="Full" type="Panel" parent="Empty"]
+layout_mode = 2
+anchor_bottom = 1.0
+offset_right = 320.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sybm2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.969
+offset_left = 16.0
+offset_right = 160.0
+offset_bottom = -0.00800133
+text = "10 / 10"
+label_settings = SubResource("LabelSettings_lekab")
+vertical_alignment = 1

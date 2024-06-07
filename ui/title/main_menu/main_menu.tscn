@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4bgblgmyerix"]
+
+[sub_resource type="Gradient" id="Gradient_di0ij"]
+colors = PackedColorArray(0, 0, 0, 1, 0.17, 0.695667, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvowy"]
+gradient = SubResource("Gradient_di0ij")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po8cb"]
+bg_color = Color(0.717647, 0.717647, 0.717647, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
+font_size = 24
+
+[node name="Login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vvowy")
+region_rect = Rect2(14, 14, 20, 20)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 216.0
+offset_right = 712.0
+offset_bottom = 426.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_po8cb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Login"
+label_settings = SubResource("LabelSettings_wtmuv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choose" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="PanelContainer/VBoxContainer/Choose"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.062
+anchor_right = 0.531
+anchor_bottom = 1.0
+offset_top = 1.984
+offset_right = -15.936
+grow_horizontal = 2
+grow_vertical = 2
+text = "Login"
+
+[node name="RegisterButton" type="Button" parent="PanelContainer/VBoxContainer/Choose"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Register"
+
+[node name="LoginForm" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(256, 112)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Username" type="LineEdit" parent="PanelContainer/VBoxContainer/LoginForm"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="Password" type="LineEdit" parent="PanelContainer/VBoxContainer/LoginForm"]
+layout_mode = 2
+placeholder_text = "Password"
+
+[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/LoginForm"]
+layout_mode = 2
+text = "Submit"
+
+[node name="RegisterForm" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 112)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Username" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="Password" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+layout_mode = 2
+placeholder_text = "Password"
+
+[node name="RetypePassword" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+layout_mode = 2
+placeholder_text = "Re-type Password"
+
+[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/RegisterForm"]
+layout_mode = 2
+text = "Submit"

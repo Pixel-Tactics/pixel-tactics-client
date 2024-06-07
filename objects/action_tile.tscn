@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://caa25yb1hm5pi"]
+
+[ext_resource type="Script" path="res://objects/action_tile.gd" id="1_cqafk"]
+[ext_resource type="Texture2D" uid="uid://cgr07yylambcl" path="res://assets/move-tile.png" id="2_dqiy0"]
+[ext_resource type="Script" path="res://objects/area_click.gd" id="3_ainwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge0d7"]
+size = Vector2(32, 32)
+
+[node name="ActionTile" type="Node2D"]
+script = ExtResource("1_cqafk")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.737255)
+texture = ExtResource("2_dqiy0")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_ainwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ge0d7")

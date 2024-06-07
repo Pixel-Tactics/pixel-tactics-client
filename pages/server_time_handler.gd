@@ -20,10 +20,10 @@ func handle_incoming(message: Dictionary):
 	TimeManager.set_time(cur_time, local_end)
 	emit_signal("success_received")
 
-func handle_error(message: Dictionary):
+func handle_error(_message: Dictionary):
 	emit_signal("error_received")
 
-func send(message: Dictionary, identifier: String, socket: WebSocketPeer):
+func send(_message: Dictionary, identifier: String, socket: WebSocketPeer):
 	progress_id = identifier
 	var msg = JSON.stringify({
 		"action": "SERVER_TIME",

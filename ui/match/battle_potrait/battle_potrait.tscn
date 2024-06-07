@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1eypxrqx3cyv"]
+
+[ext_resource type="Script" path="res://ui/match/battle_potrait/background.gd" id="1_gkhr8"]
+[ext_resource type="Texture2D" uid="uid://bxwn8teiixow" path="res://assets/ui/panel-transparent-center-031.png" id="1_qtnw6"]
+[ext_resource type="Script" path="res://ui/match/battle_potrait/battle_potrait.gd" id="1_wjmlj"]
+[ext_resource type="PackedScene" uid="uid://o1i8g57rg0ul" path="res://ui/match/bar/bar.tscn" id="3_bgxti"]
+[ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="3_hpb60"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8cs0"]
+bg_color = Color(1, 1, 1, 0.360784)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0lwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akqcc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avv76"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ywmu"]
+
+[node name="BattlePotrait" type="Control"]
+custom_minimum_size = Vector2(128, 176)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 176.0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_wjmlj")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 132.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l8cs0")
+script = ExtResource("1_gkhr8")
+
+[node name="Hero" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_qtnw6")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="Potrait" type="TextureRect" parent="Hero"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hpb60")
+
+[node name="Button" type="Button" parent="Hero"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
+
+[node name="Bar" parent="." instance=ExtResource("3_bgxti")]
+offset_top = 144.0
+offset_right = 128.0
+offset_bottom = 176.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 176.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p0lwh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_akqcc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_avv76")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5ywmu")

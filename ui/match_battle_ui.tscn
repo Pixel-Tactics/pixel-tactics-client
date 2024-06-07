@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkfgfmtt4lurn"]
+
+[ext_resource type="Script" path="res://ui/match_battle_ui.gd" id="1_8wfpr"]
+[ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="2_dba8k"]
+[ext_resource type="PackedScene" uid="uid://d2bx4pglsjpg0" path="res://ui/match/icon_button/icon_button.tscn" id="3_rdgey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vacpd"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_hnpls"]
+font_size = 32
+
+[node name="MatchBattleUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_8wfpr")
+
+[node name="Timer" parent="." instance=ExtResource("2_dba8k")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -72.0
+offset_top = 24.0
+offset_right = 72.0
+offset_bottom = 72.0
+grow_horizontal = 1
+
+[node name="PlayerData" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="PlayerData"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -248.0
+offset_right = 304.0
+offset_bottom = -216.0
+text = "meervix289"
+label_settings = SubResource("LabelSettings_vacpd")
+
+[node name="PotraitList" type="HBoxContainer" parent="PlayerData"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -200.0
+offset_right = 304.0
+offset_bottom = -24.0
+theme_override_constants/separation = 24
+
+[node name="OpponentData" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="OpponentData"]
+layout_mode = 0
+offset_left = -304.0
+offset_top = 216.0
+offset_right = -24.0
+offset_bottom = 248.0
+text = "meervix289"
+label_settings = SubResource("LabelSettings_vacpd")
+horizontal_alignment = 2
+
+[node name="PotraitList" type="HBoxContainer" parent="OpponentData"]
+custom_minimum_size = Vector2(0, 176)
+layout_mode = 2
+offset_left = -304.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 200.0
+theme_override_constants/separation = 24
+alignment = 2
+
+[node name="State" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 336.0
+offset_bottom = 72.0
+text = "Player's Turn"
+label_settings = SubResource("LabelSettings_hnpls")
+vertical_alignment = 1
+
+[node name="ActionButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -112.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="EndTurn" parent="ActionButtons" instance=ExtResource("3_rdgey")]
+layout_mode = 2
+button_text = "End Turn"
+
+[node name="Forfeit" parent="ActionButtons" instance=ExtResource("3_rdgey")]
+layout_mode = 2
+button_text = "Forfeit"

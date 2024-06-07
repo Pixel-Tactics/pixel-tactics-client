@@ -18,7 +18,6 @@ func clear():
 
 func update():
 	if not request_sent:
-		print("LOADING PREPARATION")
 		ui_manager.ChangeUI("LOADING")
 		match_api.send_request("GET_SESSION", {
 			"session_id": match_manager.match_data.id,

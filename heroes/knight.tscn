@@ -5,8 +5,9 @@
 
 [node name="Knight" instance=ExtResource("1_2wdqa")]
 hero_name = "Knight"
-max_health = 3
-health = 3
+max_health = 10
+health = 10
+attack_range = 1
 move_range = 3
 
 [node name="Sprite2D" parent="." index="0"]
