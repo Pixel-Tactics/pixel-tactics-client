@@ -7,11 +7,6 @@ var toast_list: Array[Dictionary] = []
 
 const DURATION = 5
 
-func _ready():
-	push(ToastBox.LOADING, "LOADING...")
-	push(ToastBox.ERROR, "INVALID CREDENTIALS")
-	push(ToastBox.ERROR, "INVALID USERNAME")
-
 func _process(_delta):
 	var front_toast = front()
 	var cur_time = Time.get_unix_time_from_system()
