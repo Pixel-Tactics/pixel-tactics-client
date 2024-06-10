@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+class_name Toast
+
 var toast_box_template = preload("res://ui/general/toast/toast_box.tscn")
 var toast_list: Array[Dictionary] = []
 
@@ -21,9 +23,10 @@ func pop():
 	toast_list.pop_front()
 	toast.toast_box.queue_free()
 
-func push(message: String):
+func push(type: Resource, message: String):
 	var toast_box = toast_box_template.instantiate()
-	toast_box.init(message)
+	toast_box.init(type, message)
+	toast_box.modulate.a = 0
 	var cur_time = Time.get_unix_time_from_system()
 	toast_list.push_back({
 		"message": message,
@@ -31,3 +34,6 @@ func push(message: String):
 		"toast_box": toast_box,
 	})
 	add_child(toast_box)
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(toast_box, "modulate:a", 1, 0.5).set_trans(Tween.TRANS_LINEAR)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcf6jk0e0sk0c"]
+[gd_scene load_steps=5 format=3 uid="uid://bcf6jk0e0sk0c"]
 
 [ext_resource type="Script" path="res://ui/general/toast/toast_box.gd" id="1_1to6e"]
 [ext_resource type="Texture2D" uid="uid://cc6ejdbv6r6eo" path="res://assets/ui/icons/Exclamation-Mark.png" id="2_3qaph"]
-[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_ys3xm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8ct0"]
 bg_color = Color(1, 0.466667, 0.419608, 1)
@@ -12,8 +11,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_vv1k1"]
-font = ExtResource("2_ys3xm")
-font_size = 22
+font_color = Color(0, 0, 0, 1)
 
 [node name="ToastBox" type="Panel"]
 custom_minimum_size = Vector2(312, 56)
@@ -23,17 +21,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_w8ct0")
 script = ExtResource("1_1to6e")
-color = Color(1, 0.466667, 0.419608, 1)
 
 [node name="Contents" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
 offset_left = 64.0
-offset_top = -20.0
+offset_top = 8.0
 offset_right = 304.0
-offset_bottom = 20.0
+offset_bottom = 48.0
 text = "INVALID CREDENTIALS"
 label_settings = SubResource("LabelSettings_vv1k1")
 vertical_alignment = 1
@@ -41,13 +35,10 @@ autowrap_mode = 2
 clip_text = true
 
 [node name="Icon" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
 offset_left = 8.0
-offset_top = -20.0
+offset_top = 8.0
 offset_right = 48.0
-offset_bottom = 20.0
+offset_bottom = 48.0
 texture = ExtResource("2_3qaph")
 stretch_mode = 5
