@@ -4,6 +4,8 @@
 This is the client (frontend) of Pixel Tactics.
 
 ## Installing
+Before installing, you need to ensure that the Match Microservice, Users Microservice, and RabbitMQ server are running.
+
 To install the client, you just need to install Godot and open this project.
 
 ## Developers
