@@ -7,6 +7,11 @@ var toast_list: Array[Dictionary] = []
 
 const DURATION = 5
 
+func _ready():
+	push(ToastBox.LOADING, "LOADING...")
+	push(ToastBox.ERROR, "INVALID CREDENTIALS")
+	push(ToastBox.ERROR, "INVALID USERNAME")
+
 func _process(_delta):
 	var front_toast = front()
 	var cur_time = Time.get_unix_time_from_system()
@@ -21,7 +26,9 @@ func front():
 func pop():
 	var toast = front()
 	toast_list.pop_front()
-	toast.toast_box.queue_free()
+	var tween = get_tree().create_tween()
+	tween.tween_property(toast.toast_box, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_callback(toast.toast_box.queue_free)
 
 func push(type: Resource, message: String):
 	var toast_box = toast_box_template.instantiate()
