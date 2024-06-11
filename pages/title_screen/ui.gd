@@ -34,6 +34,8 @@ func form_error(msg):
 	locked = false
 	toast.push(ToastBox.ERROR, msg)
 
-func go_to_menu(player_token):
+func go_to_menu(player_token, user: User):
 	form.visible = false
+	main_menu.init(player_token, user)
 	main_menu.visible = true
+	

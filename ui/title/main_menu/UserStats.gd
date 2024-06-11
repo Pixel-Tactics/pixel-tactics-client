@@ -4,7 +4,7 @@ extends PanelContainer
 @onready var name_label = $HBoxContainer/VBoxContainer/NameLabel
 @onready var exp_label = $HBoxContainer/VBoxContainer/ExpLabel
 
-func update_ui(pname, level, rating, exp, max_exp):
-	level_label.text = level
-	name_label.text = "%s (rating: %d)" % [pname, rating]
-	exp_label.text = "Exp: %d / %d" % [exp, max_exp]
+func update_ui(user: User):
+	level_label.text = str(user.level)
+	name_label.text = "%s (rating: %d)" % [user.username, user.rating]
+	exp_label.text = "Exp: %d / %d" % [user.exp, user.max_exp]

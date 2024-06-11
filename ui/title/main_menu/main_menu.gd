@@ -1,4 +1,9 @@
 extends Control
 
-func init(pname, plevel, pexp, pmax_exp, prating):
-	pass
+@onready var user_stats = $UserStats
+
+var _user: User = null
+
+func init(player_token: String, user: User):
+	_user = user
+	user_stats.update_ui(_user)
