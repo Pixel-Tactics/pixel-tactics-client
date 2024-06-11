@@ -44,7 +44,7 @@ func _on_register_submit():
 	if password != password_check:
 		emit_signal("error_received", "PASSWORD MISMATCH")
 		return
-	emit_signal("login_submitted", username, password)
+	emit_signal("register_submitted", username, password)
 
 func _on_login_choose():
 	title.text = "Login"

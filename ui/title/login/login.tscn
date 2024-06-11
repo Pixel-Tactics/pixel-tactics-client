@@ -1,12 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dybwedbf1ha37"]
+[gd_scene load_steps=5 format=3 uid="uid://dybwedbf1ha37"]
 
 [ext_resource type="Script" path="res://ui/title/login/login.gd" id="1_lf5x8"]
-
-[sub_resource type="Gradient" id="Gradient_di0ij"]
-colors = PackedColorArray(0, 0, 0, 1, 0.17, 0.695667, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvowy"]
-gradient = SubResource("Gradient_di0ij")
+[ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="2_cq3oh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po8cb"]
 bg_color = Color(0.717647, 0.717647, 0.717647, 1)
@@ -19,6 +14,8 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.258824)
+shadow_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
 font_size = 24
@@ -32,15 +29,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lf5x8")
 
-[node name="Background" type="NinePatchRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_vvowy")
-region_rect = Rect2(14, 14, 20, 20)
+texture = ExtResource("2_cq3oh")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

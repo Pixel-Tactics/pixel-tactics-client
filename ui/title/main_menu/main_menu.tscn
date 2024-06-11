@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4bgblgmyerix"]
+[gd_scene load_steps=9 format=3 uid="uid://b4bgblgmyerix"]
 
-[sub_resource type="Gradient" id="Gradient_di0ij"]
-colors = PackedColorArray(0, 0, 0, 1, 0.17, 0.695667, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvowy"]
-gradient = SubResource("Gradient_di0ij")
+[ext_resource type="Script" path="res://ui/title/main_menu/main_menu.gd" id="1_ceggt"]
+[ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="1_egm2m"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_ijs1k"]
+[ext_resource type="Script" path="res://ui/title/main_menu/UserStats.gd" id="3_xbx36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po8cb"]
 bg_color = Color(0.717647, 0.717647, 0.717647, 1)
@@ -19,109 +18,114 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
+font = ExtResource("2_ijs1k")
 font_size = 24
 
-[node name="Login" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euw3q"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_1uog2"]
+font = ExtResource("2_ijs1k")
+font_size = 32
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ceggt")
 
-[node name="Background" type="NinePatchRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_vvowy")
-region_rect = Rect2(14, 14, 20, 20)
+texture = ExtResource("1_egm2m")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 216.0
-offset_right = 712.0
-offset_bottom = 426.0
+[node name="InviteBattle" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -60.0
+offset_right = 136.0
+offset_bottom = 58.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_po8cb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InviteBattle"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="InviteBattle/VBoxContainer"]
 layout_mode = 2
-text = "Login"
+text = "Invite Battle"
 label_settings = SubResource("LabelSettings_wtmuv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Choose" type="Control" parent="PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="LoginButton" type="Button" parent="PanelContainer/VBoxContainer/Choose"]
-custom_minimum_size = Vector2(0, 31)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.062
-anchor_right = 0.531
-anchor_bottom = 1.0
-offset_top = 1.984
-offset_right = -15.936
-grow_horizontal = 2
-grow_vertical = 2
-text = "Login"
-
-[node name="RegisterButton" type="Button" parent="PanelContainer/VBoxContainer/Choose"]
-custom_minimum_size = Vector2(0, 31)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Register"
-
-[node name="LoginForm" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(256, 112)
+[node name="InviteForm" type="VBoxContainer" parent="InviteBattle/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Username" type="LineEdit" parent="PanelContainer/VBoxContainer/LoginForm"]
+[node name="UserId" type="LineEdit" parent="InviteBattle/VBoxContainer/InviteForm"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ijs1k")
 placeholder_text = "Username"
 
-[node name="Password" type="LineEdit" parent="PanelContainer/VBoxContainer/LoginForm"]
+[node name="Submit" type="Button" parent="InviteBattle/VBoxContainer/InviteForm"]
 layout_mode = 2
-placeholder_text = "Password"
-
-[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/LoginForm"]
-layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ijs1k")
 text = "Submit"
 
-[node name="RegisterForm" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(256, 112)
+[node name="UserStats" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_po8cb")
+script = ExtResource("3_xbx36")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UserStats"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Username" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+[node name="LevelBox" type="PanelContainer" parent="UserStats/HBoxContainer"]
 layout_mode = 2
-placeholder_text = "Username"
+theme_override_styles/panel = SubResource("StyleBoxFlat_euw3q")
 
-[node name="Password" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+[node name="LevelLabel" type="Label" parent="UserStats/HBoxContainer/LevelBox"]
+custom_minimum_size = Vector2(64, 39)
 layout_mode = 2
-placeholder_text = "Password"
+text = "100"
+label_settings = SubResource("LabelSettings_1uog2")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RetypePassword" type="LineEdit" parent="PanelContainer/VBoxContainer/RegisterForm"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UserStats/HBoxContainer"]
 layout_mode = 2
-placeholder_text = "Re-type Password"
 
-[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/RegisterForm"]
+[node name="NameLabel" type="Label" parent="UserStats/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(254, 30)
 layout_mode = 2
-text = "Submit"
+text = "Meervix (Rating: 1800)"
+label_settings = SubResource("LabelSettings_wtmuv")
+vertical_alignment = 1
+
+[node name="ExpLabel" type="Label" parent="UserStats/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 30)
+layout_mode = 2
+text = "Exp: 0/150"
+label_settings = SubResource("LabelSettings_wtmuv")
+vertical_alignment = 1
