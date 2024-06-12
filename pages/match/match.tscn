@@ -1,20 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjbitbb4csx1v"]
+[gd_scene load_steps=16 format=3 uid="uid://bjbitbb4csx1v"]
 
 [ext_resource type="Script" path="res://pages/match/match_manager.gd" id="1_5c3rk"]
-[ext_resource type="Script" path="res://pages/match/match_api.gd" id="2_cpgn1"]
+[ext_resource type="Script" path="res://api/match_websocket/manager/session_api.gd" id="2_4k4ll"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/auth_handler.gd" id="3_d05lb"]
 [ext_resource type="Script" path="res://pages/match/map_manager.gd" id="3_dwuy0"]
-[ext_resource type="Script" path="res://api/match_api/auth_handler.gd" id="3_jlg3t"]
-[ext_resource type="Script" path="res://api/match_api/start_session_handler.gd" id="4_hsqt1"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/server_time_handler.gd" id="4_6dcaw"]
 [ext_resource type="Script" path="res://pages/match/match_ui_manager.gd" id="5_j4dqs"]
-[ext_resource type="Script" path="res://api/match_api/create_session_handler.gd" id="5_smxfd"]
-[ext_resource type="Script" path="res://api/match_api/server_time_handler.gd" id="6_cnear"]
-[ext_resource type="Script" path="res://api/match_api/get_session_handler.gd" id="7_vj6mc"]
-[ext_resource type="Script" path="res://api/match_api/prepare_player_handler.gd" id="8_n6hpr"]
-[ext_resource type="Script" path="res://api/match_api/state_change_handler.gd" id="9_7evf2"]
-[ext_resource type="Script" path="res://api/match_api/execute_action_handler.gd" id="10_hhrlk"]
-[ext_resource type="Script" path="res://api/match_api/apply_action_handler.gd" id="11_2md87"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/get_session_handler.gd" id="5_yic7e"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/prepare_player_handler.gd" id="6_losyt"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/state_change_handler.gd" id="7_o1mta"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/execute_action_handler.gd" id="8_ruw6m"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/apply_action_handler.gd" id="9_o8k7j"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/end_turn_handler.gd" id="10_lsrqv"]
 [ext_resource type="Texture2D" uid="uid://du7x6wmacft63" path="res://assets/tilemaps/tiny_battle_rescaled.png" id="11_335no"]
-[ext_resource type="Script" path="res://api/match_api/end_turn_handler.gd" id="12_srp5i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c614n"]
 resource_name = "terrain"
@@ -414,37 +412,31 @@ sources/0 = SubResource("TileSetAtlasSource_c614n")
 script = ExtResource("1_5c3rk")
 
 [node name="MatchAPI" type="Node" parent="."]
-script = ExtResource("2_cpgn1")
+script = ExtResource("2_4k4ll")
 
 [node name="AuthHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("3_jlg3t")
-
-[node name="StartSessionHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("4_hsqt1")
-
-[node name="CreateSessionHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("5_smxfd")
+script = ExtResource("3_d05lb")
 
 [node name="ServerTimeHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("6_cnear")
+script = ExtResource("4_6dcaw")
 
 [node name="GetSessionHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("7_vj6mc")
+script = ExtResource("5_yic7e")
 
 [node name="PreparePlayerHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("8_n6hpr")
+script = ExtResource("6_losyt")
 
 [node name="StateChangeHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("9_7evf2")
+script = ExtResource("7_o1mta")
 
 [node name="ExecuteActionHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("10_hhrlk")
+script = ExtResource("8_ruw6m")
 
 [node name="ApplyActionHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("11_2md87")
+script = ExtResource("9_o8k7j")
 
 [node name="EndTurnHandler" type="Node" parent="MatchAPI"]
-script = ExtResource("12_srp5i")
+script = ExtResource("10_lsrqv")
 
 [node name="Map" type="Node" parent="."]
 script = ExtResource("3_dwuy0")

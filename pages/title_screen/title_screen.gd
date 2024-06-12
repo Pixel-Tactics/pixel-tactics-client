@@ -57,7 +57,7 @@ func _send_register_request(username, password):
 			ui.form_error("CONNECTION ERROR")
 			is_requesting = false
 
-func _send_data_request(player_token):
+func _send_data_request(pplayer_token):
 	if not is_requesting:
 		is_requesting = true
 		var url = ProjectSettings.get_setting("application/config/user_service_url")
@@ -71,7 +71,7 @@ func _send_data_request(player_token):
 			url,
 			[
 				"Content-Type: application/json",
-				"Authorization: Bearer %s" % [player_token],
+				"Authorization: Bearer %s" % [pplayer_token],
 			],
 			HTTPClient.METHOD_GET
 		)
@@ -84,7 +84,7 @@ func _send_invite_request(user_id):
 		"opponent_id": user_id,
 	})
 
-func _login_request_completed(result, response_code, headers, body, request_obj):
+func _login_request_completed(result, response_code, _headers, body, request_obj):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		ui.form_error("CONNECTION ERROR")
 		is_requesting = false
@@ -101,7 +101,7 @@ func _login_request_completed(result, response_code, headers, body, request_obj)
 	is_requesting = false
 	_send_data_request(player_token)
 
-func _register_request_completed(result, response_code, headers, body, request_obj):
+func _register_request_completed(result, response_code, _headers, body, request_obj):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		ui.form_error("CONNECTION ERROR")
 		is_requesting = false
@@ -118,7 +118,7 @@ func _register_request_completed(result, response_code, headers, body, request_o
 	is_requesting = false
 	_send_data_request(player_token)
 
-func _data_request_completed(result, response_code, headers, body, request_obj):
+func _data_request_completed(result, response_code, _headers, body, request_obj):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		ui.form_error("CONNECTION ERROR")
 		is_requesting = false
@@ -145,8 +145,10 @@ func _data_request_completed(result, response_code, headers, body, request_obj):
 func _invite_received(player_id):
 	ui.notify(str(player_id) + " INVITED")
 
-func _session_started(session_id: String):
+func _session_started(session_id: String, opponent_id: String):
 	Global.current_session = Session.new()
 	Global.current_session.id = session_id
+	Global.current_session.player = Player.new(Global.user.username, [], [])
+	Global.current_session.opponent = Player.new(opponent_id, [], [])
 	get_tree().root.add_child(match_scene)
 	queue_free()

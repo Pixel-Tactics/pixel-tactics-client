@@ -20,7 +20,7 @@ func update():
 func _load_player_hero(player: Player):
 	var hero_list: Array[BaseHero] = []
 	for raw_hero in player.raw_hero_list:
-		var hero_template = match_manager.match_data.heroes_template[raw_hero.template.name]
+		var hero_template = Global.current_session.heroes_template[raw_hero.template.name]
 		var hero: BaseHero = hero_template.instantiate()
 		var map_pos = Vector2(raw_hero.pos.x, raw_hero.pos.y)
 		hero.position = match_manager.map_manager.map_to_world(map_pos)
@@ -29,8 +29,8 @@ func _load_player_hero(player: Player):
 	player.hero_list = hero_list
 
 func _load_hero():
-	var player = match_manager.match_data.player
-	var opponent = match_manager.match_data.opponent
+	var player = Global.current_session.player
+	var opponent = Global.current_session.opponent
 	_load_player_hero(player)
 	_load_player_hero(opponent)
 	hero_prepared = true

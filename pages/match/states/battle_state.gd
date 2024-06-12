@@ -25,21 +25,21 @@ func update():
 	if not ui_changed:
 		var is_player = match_manager.is_player_active()
 		ui_manager.ChangeUI("BATTLE", {
-			"player": match_manager.match_data.player,
-			"opponent": match_manager.match_data.opponent,
+			"player": Global.current_session.player,
+			"opponent": Global.current_session.opponent,
 			"init_is_player": is_player,
-			"init_deadline": match_manager.match_data.state.deadline,
+			"init_deadline": Global.current_session.state.deadline,
 		})
 		ui_changed = true
 
 func _on_hero_select(hero: BaseHero):
 	if selected_hero == null and match_manager.is_player_active():
-		var map = match_manager.match_data.map
+		var map = Global.current_session.map
 		var src = match_manager.map_manager.world_to_map(hero.position)
 		var hero_list = []
-		for cur in match_manager.match_data.player.hero_list:
+		for cur in Global.current_session.player.hero_list:
 			hero_list.append(match_manager.map_manager.world_to_map(cur.position))
-		for cur in match_manager.match_data.opponent.hero_list:
+		for cur in Global.current_session.opponent.hero_list:
 			hero_list.append(match_manager.map_manager.world_to_map(cur.position))
 		
 		match_manager.ui_manager.current_ui.start_hero_action(hero)
@@ -59,7 +59,7 @@ func _on_hero_move(dir_list: Array):
 		
 func _on_hero_attack(target_pos: Vector2i):
 	if selected_hero != null and match_manager.is_player_active():
-		var target_hero = match_manager.match_data.opponent.find_hero_on_pos(target_pos)
+		var target_hero = Global.current_session.opponent.find_hero_on_pos(target_pos)
 		if target_hero == null:
 			return
 		match_manager.match_api.send_request("EXECUTE_ACTION", {
@@ -86,7 +86,7 @@ func _on_move_accepted(action_specific: Dictionary):
 	var new_pos_world = match_manager.map_manager.map_to_world(new_pos)
 	hero.position = new_pos_world
 	if selected_hero == hero:
-		var map = match_manager.match_data.map
+		var map = Global.current_session.map
 		match_manager.map_manager.make_attack_tiles(map, new_pos, hero.attack_range)
 
 func _on_attack_accepted(action_specific: Dictionary):
@@ -104,7 +104,7 @@ func _on_end_turn():
 func _on_state_changed(session_data: Dictionary):
 	var new_state = session_data.state
 	if new_state.name == "PLAYER_1_TURN" or new_state.name == "PLAYER_2_TURN":
-		match_manager.match_data.state = new_state
+		Global.current_session.state = new_state
 		selected_hero = null
 		map_manager.remove_tiles()
 		ui_manager.current_ui.change_turn(match_manager.is_player_active(), new_state.deadline)

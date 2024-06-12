@@ -1,18 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cybyo3p6birfj"]
+[gd_scene load_steps=13 format=3 uid="uid://cybyo3p6birfj"]
 
 [ext_resource type="Script" path="res://pages/title_screen/ui.gd" id="1_0hsq8"]
 [ext_resource type="Script" path="res://pages/title_screen/title_screen.gd" id="1_cevc6"]
-[ext_resource type="Script" path="res://pages/title_screen/invite_api.gd" id="2_2sfya"]
+[ext_resource type="Script" path="res://api/match_websocket/manager/invite_api.gd" id="2_2sfya"]
 [ext_resource type="PackedScene" uid="uid://cdh401tk5h5hp" path="res://ui/general/toast/toast.tscn" id="2_m8k0u"]
-[ext_resource type="Script" path="res://api/match_api/auth_handler.gd" id="3_j4o5j"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/auth_handler.gd" id="3_j4o5j"]
 [ext_resource type="PackedScene" uid="uid://dybwedbf1ha37" path="res://ui/title/login/login.tscn" id="3_obaba"]
-[ext_resource type="Script" path="res://api/match_api/start_session_handler.gd" id="4_cyk4g"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/start_session_handler.gd" id="4_cyk4g"]
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_lit8q"]
 [ext_resource type="PackedScene" uid="uid://b4bgblgmyerix" path="res://ui/title/main_menu/main_menu.tscn" id="4_u3ml0"]
-[ext_resource type="AudioStream" uid="uid://mqtcfduiwsdu" path="res://assets/audio/bgm/The Journey Home - Hitctrl.mp3" id="4_y2dxi"]
-[ext_resource type="Script" path="res://api/match_api/create_session_handler.gd" id="5_t5tk1"]
-[ext_resource type="Script" path="res://pages/title_screen/auto_play.gd" id="5_x6yn0"]
-[ext_resource type="Script" path="res://api/match_api/invite_session_handler.gd" id="6_a00g1"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/create_session_handler.gd" id="5_t5tk1"]
+[ext_resource type="Script" path="res://api/match_websocket/handlers/invite_session_handler.gd" id="6_a00g1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_evnv1"]
 font = ExtResource("4_lit8q")
@@ -67,7 +65,3 @@ grow_vertical = 0
 text = "Pixel Tactics v.0.1"
 label_settings = SubResource("LabelSettings_evnv1")
 vertical_alignment = 2
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_y2dxi")
-script = ExtResource("5_x6yn0")

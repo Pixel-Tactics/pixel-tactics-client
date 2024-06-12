@@ -20,7 +20,7 @@ func update():
 	if not request_sent:
 		ui_manager.ChangeUI("LOADING")
 		match_api.send_request("GET_SESSION", {
-			"session_id": match_manager.match_data.id,
+			"session_id": Global.current_session.id,
 		})
 		match_api.send_request("SERVER_TIME")
 		request_sent = true
@@ -31,25 +31,26 @@ func update():
 		ui_prepared = true
 
 func load_match():
-	match_manager.map_manager.generate_map(match_manager.match_data.map)
+	match_manager.map_manager.generate_map(Global.current_session.map)
 	var hero_instances = []
-	for hero_name in match_manager.match_data.heroes_template.keys():
-		var hero_instance: BaseHero = match_manager.match_data.heroes_template[hero_name].instantiate()
+	for hero_name in Global.current_session.heroes_template.keys():
+		var hero_instance: BaseHero = Global.current_session.heroes_template[hero_name].instantiate()
 		hero_instance.visible = false
 		hero_instances.append(hero_instance)
-	match_manager.match_data.heroes_ui_instance = hero_instances
+	Global.current_session.heroes_ui_instance = hero_instances
 
 func _on_session_get(session_data: Dictionary):
-	if match_manager.match_data.player.id == session_data["player1"]["id"]:
-		match_manager.match_data.player_index = 1
+	print("SESSION GET")
+	if Global.current_session.player.id == session_data["player1"]["id"]:
+		Global.current_session.player_index = 1
 	else:
-		match_manager.match_data.player_index = 2
-	match_manager.match_data.state = session_data["state"]
-	match_manager.match_data.map = session_data["matchMap"]["structure"]
+		Global.current_session.player_index = 2
+	Global.current_session.state = session_data["state"]
+	Global.current_session.map = session_data["matchMap"]["structure"]
 	
 	var heroes_name: Array = session_data["availableHeroList"]
 	for hero_name in heroes_name:
-		match_manager.match_data.heroes_template[hero_name] = load("res://heroes/" + hero_name + ".tscn")
+		Global.current_session.heroes_template[hero_name] = load("res://heroes/" + hero_name + ".tscn")
 	session_loaded = true
 
 func _on_time_synced():
