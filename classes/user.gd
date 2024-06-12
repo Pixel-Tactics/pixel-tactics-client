@@ -1,16 +1,18 @@
-extends Node
+extends Object
 
 class_name User
 
 var username
 var level
-var exp
-var max_exp
+var experience
+var max_experience
 var rating
+var token
 
-func _init(iusername, ilevel, iexp, irating):
+func _init(iusername, ilevel, iexperience, irating, itoken):
 	username = iusername
 	level = ilevel
-	exp = iexp
-	max_exp = iexp
+	experience = iexperience
+	max_experience = iexperience
 	rating = irating
+	token = itoken

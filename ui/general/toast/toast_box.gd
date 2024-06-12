@@ -4,6 +4,7 @@ class_name ToastBox
 
 const ERROR = preload("res://assets/ui/icons/Exclamation-Mark.png")
 const LOADING = preload("res://assets/ui/icons/Clock.png")
+const INFO = preload("res://assets/ui/icons/Mail.png")
 
 @export var content_text: String = "Lorem Ipsum"
 @export var type: Resource = ERROR
@@ -19,6 +20,8 @@ func init(init_type: Resource, init_content_text: String, init_color: Color = Co
 		color = Color(255.0/255.0, 119.0/255.0, 107.0/255.0)
 	elif init_type == LOADING:
 		color = Color.DIM_GRAY
+	elif init_type == INFO:
+		color = Color(223.0/255.0, 173.0/255.0, 99.0/255.0)
 	else:
 		color = init_color
 

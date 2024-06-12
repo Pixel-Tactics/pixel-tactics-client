@@ -23,4 +23,5 @@ func send(message: Dictionary, identifier: String, socket: WebSocketPeer):
 			"opponentId": message.opponent_id,
 		},
 	}).to_utf8_buffer()
+	print(msg)
 	socket.send(msg)

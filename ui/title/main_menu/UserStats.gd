@@ -7,4 +7,4 @@ extends PanelContainer
 func update_ui(user: User):
 	level_label.text = str(user.level)
 	name_label.text = "%s (rating: %d)" % [user.username, user.rating]
-	exp_label.text = "Exp: %d / %d" % [user.exp, user.max_exp]
+	exp_label.text = "Exp: %d / %d" % [user.experience, user.max_experience]
