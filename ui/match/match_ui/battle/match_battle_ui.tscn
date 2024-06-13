@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkfgfmtt4lurn"]
 
-[ext_resource type="Script" path="res://ui/match_battle_ui.gd" id="1_8wfpr"]
+[ext_resource type="Script" path="res://ui/match/match_ui/battle/match_battle_ui.gd" id="1_8wfpr"]
 [ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="2_dba8k"]
 [ext_resource type="PackedScene" uid="uid://d2bx4pglsjpg0" path="res://ui/match/icon_button/icon_button.tscn" id="3_rdgey"]
 

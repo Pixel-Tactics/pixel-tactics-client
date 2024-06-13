@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8w3201mcbi4s"]
+
+[ext_resource type="Script" path="res://ui/match/match_ui/results/reward_item.gd" id="1_1vtys"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_kvibd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvpai"]
+font = ExtResource("1_kvibd")
+font_size = 28
+
+[node name="RewardItem" type="HBoxContainer"]
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+script = ExtResource("1_1vtys")
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Experience"
+label_settings = SubResource("LabelSettings_dvpai")
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10 / 150 (+50)"
+label_settings = SubResource("LabelSettings_dvpai")

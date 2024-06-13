@@ -72,6 +72,8 @@ func _on_hero_attack(target_pos: Vector2i):
 		match_manager.map_manager.remove_tiles()
 
 func _on_move_accepted(action_specific: Dictionary):
+	if Global.current_session == null:
+		return
 	var player = match_manager.get_player_by_id(action_specific["playerId"])
 	if not player:
 		return
@@ -90,6 +92,8 @@ func _on_move_accepted(action_specific: Dictionary):
 		match_manager.map_manager.make_attack_tiles(map, new_pos, hero.attack_range)
 
 func _on_attack_accepted(action_specific: Dictionary):
+	if Global.current_session == null:
+		return
 	var player = match_manager.get_opponent_by_id(action_specific["playerId"])
 	if not player:
 		return
@@ -108,3 +112,8 @@ func _on_state_changed(session_data: Dictionary):
 		selected_hero = null
 		map_manager.remove_tiles()
 		ui_manager.current_ui.change_turn(match_manager.is_player_active(), new_state.deadline)
+	elif new_state.name == "END":
+		Global.last_session = Global.current_session
+		Global.last_session.state = new_state
+		Global.current_session = null
+		ui_manager.ChangeUI("RESULTS", {})

@@ -459,7 +459,3 @@ zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_j4dqs")
-credentials_ui_path = "res://ui/credentials.tscn"
-loading_ui_path = "res://ui/match_loading_ui.tscn"
-prepare_ui_path = "res://ui/match_prepare_ui.tscn"
-battle_ui_path = "res://ui/match_battle_ui.tscn"

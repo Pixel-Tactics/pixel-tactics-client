@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djwxrfyo63aj"]
 
-[ext_resource type="Script" path="res://ui/match_prepare_ui.gd" id="1_ldhp2"]
+[ext_resource type="Script" path="res://ui/match/match_ui/prepare/match_prepare_ui.gd" id="1_ldhp2"]
 [ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="5_rqxpr"]
 
 [node name="MatchPrepareUI" type="Control"]

@@ -1,0 +1,145 @@
+[gd_scene load_steps=16 format=3 uid="uid://gq57wo6y1ia2"]
+
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_0m4n1"]
+[ext_resource type="StyleBox" uid="uid://sn2u8vgcjkc8" path="res://ui/match/match_ui/results/button.tres" id="1_278ek"]
+[ext_resource type="Script" path="res://ui/match/match_ui/results/results_ui.gd" id="1_dwcmu"]
+[ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="1_vluwf"]
+[ext_resource type="Texture2D" uid="uid://dk3vxibcptafc" path="res://assets/ui/buttons/button_rounded_CC_2x.png" id="1_y3njj"]
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="2_3w4mn"]
+[ext_resource type="Texture2D" uid="uid://bi4u6euf1ov12" path="res://assets/ui/icons/Clock.png" id="4_ik8dn"]
+[ext_resource type="Texture2D" uid="uid://h8fm0ejxkbml" path="res://assets/ui/icons/Previous.png" id="5_6q0h3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xro6p"]
+texture = ExtResource("1_vluwf")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_venyc"]
+font = ExtResource("1_0m4n1")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfcj1"]
+font = ExtResource("1_0m4n1")
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hoyxg"]
+texture = ExtResource("2_3w4mn")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0.494118, 0.494118, 0.494118, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwxlu"]
+texture = ExtResource("1_y3njj")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.886275, 0.886275, 0.886275, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h62yn"]
+texture = ExtResource("1_y3njj")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svcao"]
+
+[node name="MatchResultUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_dwcmu")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -244.0
+offset_right = 248.0
+offset_bottom = 252.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xro6p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="WinningStatus" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "VICTORY"
+label_settings = SubResource("LabelSettings_venyc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Opponent" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "AGAINST test4"
+label_settings = SubResource("LabelSettings_cfcj1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_hoyxg")
+
+[node name="Loading" type="TextureRect" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("4_ik8dn")
+stretch_mode = 3
+
+[node name="RewardScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RewardHBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer/RewardScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0m4n1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_278ek")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qwxlu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h62yn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_svcao")
+text = "MAIN MENU"
+icon = ExtResource("5_6q0h3")
