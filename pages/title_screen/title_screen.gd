@@ -1,7 +1,5 @@
 extends Node
 
-var match_scene = preload("res://pages/match/match.tscn").instantiate()
-
 @onready var ui = $UI
 @onready var invite_api = $InviteAPI
 
@@ -138,6 +136,7 @@ func _data_request_completed(result, response_code, _headers, body, request_obj)
 		player_token,
 	)
 	Global.user = user
+	invite_api.reconnect()
 	request_obj.queue_free()
 	ui.go_to_menu()
 	is_requesting = false
@@ -150,5 +149,4 @@ func _session_started(session_id: String, opponent_id: String):
 	Global.current_session.id = session_id
 	Global.current_session.player = Player.new(Global.user.username, [], [])
 	Global.current_session.opponent = Player.new(opponent_id, [], [])
-	get_tree().root.add_child(match_scene)
-	queue_free()
+	SceneManager.change_scene(SceneManager.SceneName.MATCH)

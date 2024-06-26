@@ -113,7 +113,4 @@ func _on_state_changed(session_data: Dictionary):
 		map_manager.remove_tiles()
 		ui_manager.current_ui.change_turn(match_manager.is_player_active(), new_state.deadline)
 	elif new_state.name == "END":
-		Global.last_session = Global.current_session
-		Global.last_session.state = new_state
-		Global.current_session = null
-		ui_manager.ChangeUI("RESULTS", {})
+		match_manager.change_match_state(EndState.new(match_manager, new_state))

@@ -7,6 +7,7 @@ signal hero_submitted
 signal hero_start_request
 signal end_turn
 signal forfeit
+signal main_menu
 
 var loading_ui_template = preload("res://ui/match/match_ui/loading/match_loading_ui.tscn")
 var prepare_ui_template = preload("res://ui/match/match_ui/prepare/match_prepare_ui.tscn")
@@ -30,6 +31,9 @@ func _on_end_turn():
 
 func _on_forfeit():
 	emit_signal("forfeit")
+	
+func _on_main_menu():
+	emit_signal("main_menu")
 
 func ChangeUI(ui_type: String, init_dict: Dictionary = {}):
 	self.remove_child(current_ui)
@@ -48,5 +52,5 @@ func ChangeUI(ui_type: String, init_dict: Dictionary = {}):
 			current_ui.forfeit.connect(_on_forfeit.bind())
 		"RESULTS":
 			current_ui = results_ui_template.instantiate()
-			#current_ui.main_menu_called.connect()
+			current_ui.back_to_menu.connect(_on_main_menu)
 	self.add_child(current_ui)

@@ -70,6 +70,11 @@ func _process(_delta):
 					_request_queue.pop_front()
 					send_request(cur_request.handler_name, cur_request.message)
 
+func reconnect():
+	_id_to_name = {}
+	_request_queue = []
+	socket.close()
+
 var next_identifier = 1
 func get_identifier():
 	var cur = next_identifier

@@ -6,10 +6,13 @@ extends HBoxContainer
 var key_text = ""
 var value_text = ""
 
-func _init(key, value):
+func init(key, value):
 	key_text = key
 	value_text = value
 
 func _ready():
-	key_label.text = key_text
-	value_label.text = value_text
+	key_label.text = str(key_text)
+	if value_text >= 0:
+		value_label.text = "+" + str(value_text)
+	else:
+		value_label.text = str(value_text)
