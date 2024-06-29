@@ -10,7 +10,7 @@ signal invite_submit
 var locked: bool = false
 
 func _ready():
-	main_menu.init(Global.user)
+	main_menu.update_ui()
 	main_menu.invite_submitted.connect(_on_invite_submit)
 	main_menu.error_received.connect(_on_error)
 

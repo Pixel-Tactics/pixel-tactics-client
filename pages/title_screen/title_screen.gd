@@ -9,6 +9,7 @@ func _ready():
 	ui.invite_submit.connect(_send_invite_request)
 	invite_api.invited.connect(_invite_received)
 	invite_api.session_started.connect(_session_started)
+	Global.update_user()
 
 func _send_invite_request(user_id):
 	invite_api.send_request("CREATE_SESSION", {
