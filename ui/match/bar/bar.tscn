@@ -1,14 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://o1i8g57rg0ul"]
+[gd_scene load_steps=7 format=3 uid="uid://o1i8g57rg0ul"]
 
 [ext_resource type="Script" path="res://ui/match/bar/bar.gd" id="1_wgtp4"]
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="2_0t2j8"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_spk2h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yae1c"]
-bg_color = Color(0.419608, 0.419608, 0.419608, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7re8"]
+texture = ExtResource("2_0t2j8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0.423529, 0.423529, 0.423529, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sybm2"]
-bg_color = Color(1, 0.431373, 0.384314, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2ih6"]
+texture = ExtResource("2_0t2j8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(1, 0.470588, 0.388235, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lekab"]
+font = ExtResource("3_spk2h")
+font_size = 24
 
 [node name="Bar" type="Control"]
 layout_mode = 3
@@ -22,21 +36,21 @@ clip_children = 2
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yae1c")
+theme_override_styles/panel = SubResource("StyleBoxTexture_v7re8")
 
 [node name="Full" type="Panel" parent="Empty"]
 layout_mode = 2
 anchor_bottom = 1.0
 offset_right = 320.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sybm2")
+theme_override_styles/panel = SubResource("StyleBoxTexture_j2ih6")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.969
 offset_left = 16.0
-offset_right = 160.0
-offset_bottom = -0.00800133
+offset_right = 208.0
+offset_bottom = -0.00799942
 text = "10 / 10"
 label_settings = SubResource("LabelSettings_lekab")
 vertical_alignment = 1

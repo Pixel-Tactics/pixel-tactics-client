@@ -45,7 +45,7 @@ func _ready():
 	for hero in player_hero:
 		var hero_potrait = potrait_templ.instantiate()
 		hero_potrait.init(hero)
-		hero_potrait.change_state(BattlePotraitBackground.UNAVAILABLE)
+		hero_potrait.change_state(BattlePotrait.UNAVAILABLE)
 		hero_potrait.connect("pressed", _on_hero_select.bind())
 		player_potrait_list.add_child(hero_potrait)
 		player_potrait_track[hero.hero_name] = hero_potrait
@@ -53,7 +53,7 @@ func _ready():
 	for hero in opponent_hero:
 		var opponent_potrait = potrait_templ.instantiate()
 		opponent_potrait.init(hero)
-		opponent_potrait.change_state(BattlePotraitBackground.UNAVAILABLE)
+		opponent_potrait.change_state(BattlePotrait.UNAVAILABLE)
 		opponent_potrait_list.add_child(opponent_potrait)
 		opponent_potrait_track[hero.hero_name] = opponent_potrait
 	_update_turn()
@@ -68,28 +68,28 @@ func _update_turn():
 		state_label.text = "Player's Turn"
 		action_buttons.visible = true
 		for potrait in player_potrait_track.values():
-			potrait.change_state(BattlePotraitBackground.AVAILABLE)
+			potrait.change_state(BattlePotrait.AVAILABLE)
 	else:
 		state_label.text = "Opponent's Turn"
 		action_buttons.visible = false
 		for potrait in player_potrait_track.values():
-			potrait.change_state(BattlePotraitBackground.UNAVAILABLE)
+			potrait.change_state(BattlePotrait.UNAVAILABLE)
 	timer.end_time = deadline
 
 func reset_hero_action(hero: BaseHero):
 	if player_potrait_track.has(hero.hero_name):
 		var hero_potrait = player_potrait_track[hero.hero_name]
-		hero_potrait.change_state(BattlePotraitBackground.AVAILABLE)
+		hero_potrait.change_state(BattlePotrait.AVAILABLE)
 
 func start_hero_action(hero: BaseHero):
 	if player_potrait_track.has(hero.hero_name):
 		var hero_potrait = player_potrait_track[hero.hero_name]
-		hero_potrait.change_state(BattlePotraitBackground.SELECTED)
+		hero_potrait.change_state(BattlePotrait.SELECTED)
 
 func end_hero_action(hero: BaseHero):
 	if player_potrait_track.has(hero.hero_name):
 		var hero_potrait = player_potrait_track[hero.hero_name]
-		hero_potrait.change_state(BattlePotraitBackground.UNAVAILABLE)
+		hero_potrait.change_state(BattlePotrait.UNAVAILABLE)
 
 func _on_hero_select(hero: BaseHero):
 	emit_signal("hero_action_start_request", hero)

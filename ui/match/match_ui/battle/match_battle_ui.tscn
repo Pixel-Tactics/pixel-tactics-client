@@ -1,14 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkfgfmtt4lurn"]
+[gd_scene load_steps=12 format=3 uid="uid://bkfgfmtt4lurn"]
 
 [ext_resource type="Script" path="res://ui/match/match_ui/battle/match_battle_ui.gd" id="1_8wfpr"]
 [ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="2_dba8k"]
-[ext_resource type="PackedScene" uid="uid://d2bx4pglsjpg0" path="res://ui/match/icon_button/icon_button.tscn" id="3_rdgey"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_702mv"]
+[ext_resource type="PackedScene" uid="uid://bf3gdeheqeabx" path="res://ui/general/button/button.tscn" id="3_y6rpn"]
+[ext_resource type="Texture2D" uid="uid://dvokqc6symr5p" path="res://assets/ui/icons/Forward.png" id="4_klgtk"]
+[ext_resource type="Texture2D" uid="uid://dk3vxibcptafc" path="res://assets/ui/buttons/button_rounded_CC_2x.png" id="4_uvpi0"]
+[ext_resource type="Texture2D" uid="uid://cip1ohl440o2m" path="res://assets/ui/icons/Exit.png" id="6_rulrx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2n7v"]
+line_spacing = 0.0
+font = ExtResource("3_702mv")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_vacpd"]
+font = ExtResource("3_702mv")
 font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_hnpls"]
+font = ExtResource("3_702mv")
 font_size = 32
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fwvgt"]
+texture = ExtResource("4_uvpi0")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.866667, 0.290196, 0.27451, 1)
 
 [node name="MatchBattleUI" type="Control"]
 layout_mode = 3
@@ -28,6 +47,7 @@ offset_top = 24.0
 offset_right = 72.0
 offset_bottom = 72.0
 grow_horizontal = 1
+label_settings = SubResource("LabelSettings_g2n7v")
 
 [node name="PlayerData" type="Control" parent="."]
 layout_mode = 1
@@ -39,9 +59,9 @@ grow_vertical = 0
 [node name="Label" type="Label" parent="PlayerData"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = -248.0
+offset_top = -312.0
 offset_right = 304.0
-offset_bottom = -216.0
+offset_bottom = -280.0
 text = "meervix289"
 label_settings = SubResource("LabelSettings_vacpd")
 
@@ -106,10 +126,26 @@ grow_vertical = 0
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="EndTurn" parent="ActionButtons" instance=ExtResource("3_rdgey")]
+[node name="EndTurn" parent="ActionButtons" instance=ExtResource("3_y6rpn")]
 layout_mode = 2
-button_text = "End Turn"
+text = "End Turn"
+icon = ExtResource("4_klgtk")
 
-[node name="Forfeit" parent="ActionButtons" instance=ExtResource("3_rdgey")]
+[node name="Forfeit" parent="ActionButtons" instance=ExtResource("3_y6rpn")]
 layout_mode = 2
-button_text = "Forfeit"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_fwvgt")
+text = "Forfeit"
+icon = ExtResource("6_rulrx")
