@@ -1,14 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://045pcahpbix7"]
 
-[ext_resource type="Texture2D" uid="uid://bxwn8teiixow" path="res://assets/ui/panel-transparent-center-031.png" id="1_3mjc1"]
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="1_3aat4"]
 [ext_resource type="Script" path="res://ui/match/chosen_hero/chosen_hero.gd" id="2_kpcax"]
 [ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_wu5nn"]
 
 [node name="ChosenHero" type="NinePatchRect"]
+self_modulate = Color(0.537255, 0.537255, 0.537255, 1)
 custom_minimum_size = Vector2(104, 128)
 offset_right = 104.0
 offset_bottom = 128.0
-texture = ExtResource("1_3mjc1")
+texture = ExtResource("1_3aat4")
 patch_margin_left = 14
 patch_margin_top = 14
 patch_margin_right = 14

@@ -1,24 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1eypxrqx3cyv"]
+[gd_scene load_steps=11 format=3 uid="uid://b1eypxrqx3cyv"]
 
-[ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="1_q3rfq"]
+[ext_resource type="StyleBox" uid="uid://c42340rnprh6b" path="res://ui/general/background/background.tres" id="1_1b08u"]
 [ext_resource type="Script" path="res://ui/match/battle_potrait/battle_potrait.gd" id="1_wjmlj"]
 [ext_resource type="PackedScene" uid="uid://o1i8g57rg0ul" path="res://ui/match/bar/bar.tscn" id="3_bgxti"]
 [ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="3_hpb60"]
 [ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="3_xy8p6"]
-[ext_resource type="Texture2D" uid="uid://cqt484i6cjnvf" path="res://assets/ui/icons/Down-Arrow.png" id="6_50srw"]
-[ext_resource type="Script" path="res://ui/match/battle_potrait/arrow.gd" id="7_3c05k"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guerx"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource("1_q3rfq")
-texture_margin_left = 10.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
-modulate_color = Color(0.968627, 0.937255, 0.827451, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0lwh"]
 
@@ -28,17 +14,14 @@ modulate_color = Color(0.968627, 0.937255, 0.827451, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ywmu"]
 
+[sub_resource type="GDScript" id="GDScript_kg0ru"]
+script/source = "extends Panel
+"
+
 [node name="BattlePotrait" type="PanelContainer"]
-anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.136
-anchor_right = 0.028
-anchor_bottom = 0.136
-offset_left = -0.256001
-offset_top = -0.128006
-offset_right = 143.744
-offset_bottom = 183.872
-theme_override_styles/panel = SubResource("StyleBoxTexture_guerx")
+offset_right = 144.0
+offset_bottom = 184.0
+theme_override_styles/panel = ExtResource("1_1b08u")
 script = ExtResource("1_wjmlj")
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -82,27 +65,24 @@ texture = ExtResource("3_hpb60")
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="BattlePotrait" type="Control" parent="."]
-custom_minimum_size = Vector2(128, 176)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-
-[node name="Arrow" type="TextureRect" parent="BattlePotrait"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 48.0
-offset_top = -56.0
-offset_right = -48.0
-offset_bottom = -8.0
-grow_horizontal = 2
-pivot_offset = Vector2(24, 48)
-texture = ExtResource("6_50srw")
-script = ExtResource("7_3c05k")
-
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_p0lwh")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_akqcc")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_avv76")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5ywmu")
+
+[node name="BattlePotrait" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(128, 176)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Background" type="Panel" parent="BattlePotrait"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 132.0
+offset_bottom = 180.0
+theme_override_styles/panel = ExtResource("1_1b08u")
+script = SubResource("GDScript_kg0ru")
