@@ -13,8 +13,10 @@ config_version=5
 config/name="Pixel Tactics Client"
 run/main_scene="res://pages/blank/blank.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://assets/icon.svg"
-config/user_service_url="http://localhost:8080"
+boot_splash/image="res://assets/ui/logo/logo.png"
+boot_splash/fullsize=false
+config/icon="res://assets/ui/logo/logo.png"
+config/user_service_url="http://127.0.0.1:8080"
 config/match_service_url="ws://127.0.0.1:8000/ws"
 
 [autoload]

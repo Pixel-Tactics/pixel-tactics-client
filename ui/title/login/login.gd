@@ -12,7 +12,10 @@ signal error_received
 @onready var login_form_submit = $PanelContainer/VBoxContainer/LoginForm/Submit
 @onready var register_form_submit = $PanelContainer/VBoxContainer/RegisterForm/Submit
 
+var loading_icon = preload("res://assets/ui/icons/Clock.png")
+
 var is_login: bool = true
+var is_disabled: bool = false
 
 func _ready():
 	login_choose.pressed.connect(_on_login_choose.bind())
@@ -29,6 +32,8 @@ func _on_login_submit():
 	if password == "":
 		emit_signal("error_received", "PASSWORD EMPTY")
 		return
+	is_disabled = true
+	_disable_submit(login_form_submit)
 	emit_signal("login_submitted", username, password)
 
 func _on_register_submit():
@@ -44,14 +49,35 @@ func _on_register_submit():
 	if password != password_check:
 		emit_signal("error_received", "PASSWORD MISMATCH")
 		return
+	is_disabled = true
+	_disable_submit(register_form_submit)
 	emit_signal("register_submitted", username, password)
 
 func _on_login_choose():
-	title.text = "Login"
-	login_form.visible = true
-	register_form.visible = false
+	if not is_disabled:
+		title.text = "Login"
+		login_form.visible = true
+		register_form.visible = false
 
 func _on_register_choose():
-	title.text = "Register"
-	login_form.visible = false
-	register_form.visible = true
+	if not is_disabled:
+		title.text = "Register"
+		login_form.visible = false
+		register_form.visible = true
+
+func _disable_submit(submit_button: Button):
+	submit_button.text = ""
+	submit_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	submit_button.icon = loading_icon
+	submit_button.disabled = true
+	
+func _enable_submit(submit_button: Button):
+	submit_button.text = "Submit"
+	submit_button.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	submit_button.icon = null
+	submit_button.disabled = false
+
+func enable():
+	is_disabled = false
+	_enable_submit(login_form_submit)
+	_enable_submit(register_form_submit)

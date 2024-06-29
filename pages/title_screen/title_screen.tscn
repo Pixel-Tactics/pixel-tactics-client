@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cybyo3p6birfj"]
+[gd_scene load_steps=14 format=3 uid="uid://cybyo3p6birfj"]
 
 [ext_resource type="Script" path="res://pages/title_screen/ui.gd" id="1_0hsq8"]
 [ext_resource type="Script" path="res://pages/title_screen/title_screen.gd" id="1_cevc6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bgblgmyerix" path="res://ui/title/main_menu/main_menu.tscn" id="4_u3ml0"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/create_session_handler.gd" id="5_t5tk1"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/invite_session_handler.gd" id="6_a00g1"]
+[ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="8_b5j28"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_evnv1"]
 font = ExtResource("4_lit8q")
@@ -40,6 +41,14 @@ zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_0hsq8")
+
+[node name="Background" type="TextureRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_b5j28")
 
 [node name="Login" parent="UI" instance=ExtResource("3_obaba")]
 

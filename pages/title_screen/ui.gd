@@ -19,13 +19,11 @@ func _ready():
 func _on_login_submit(username, password):
 	if not locked:
 		locked = true
-		toast.push(ToastBox.LOADING, "LOADING...")
 		emit_signal("login_submit", username, password)
 
 func _on_register_submit(username, password):
 	if not locked:
 		locked = true
-		toast.push(ToastBox.LOADING, "LOADING...")
 		emit_signal("register_submit", username, password)
 
 func _on_form_error(msg):
@@ -38,6 +36,7 @@ func _on_invite_submit(user_id):
 func form_error(msg):
 	locked = false
 	toast.push(ToastBox.ERROR, msg)
+	form.enable()
 
 func notify(msg):
 	toast.push(ToastBox.INFO, msg)

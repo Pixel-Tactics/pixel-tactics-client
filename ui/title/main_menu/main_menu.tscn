@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4bgblgmyerix"]
+[gd_scene load_steps=9 format=3 uid="uid://b4bgblgmyerix"]
 
 [ext_resource type="Script" path="res://ui/title/main_menu/main_menu.gd" id="1_ceggt"]
-[ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="1_egm2m"]
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_ijs1k"]
 [ext_resource type="Script" path="res://ui/title/main_menu/UserStats.gd" id="3_xbx36"]
 [ext_resource type="Script" path="res://ui/title/main_menu/invite_battle_form.gd" id="3_xoq70"]
@@ -42,15 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ceggt")
-
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_egm2m")
 
 [node name="InviteBattle" type="PanelContainer" parent="."]
 layout_mode = 1

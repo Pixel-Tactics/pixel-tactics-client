@@ -15,7 +15,8 @@ func _ready():
 	change_scene(SceneName.TITLE_SCREEN)
 
 func _process(_delta):
-	if next_scene != null:
+	var is_run = get_tree().root.has_node("Blank")
+	if next_scene != null and is_run:
 		_on_next_scene()
 
 func change_scene(scene_name: SceneName):
