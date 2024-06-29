@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c42340rnprh6b"]
+
+[ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="1_trcmy"]
+
+[resource]
+texture = ExtResource("1_trcmy")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.968627, 0.937255, 0.827451, 1)

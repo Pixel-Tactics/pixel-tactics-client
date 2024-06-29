@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://blsb7oh08e7x3"]
+
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="1_jeoo6"]
+
+[resource]
+texture = ExtResource("1_jeoo6")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.662745, 0.603922, 0.486275, 1)

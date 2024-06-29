@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://api/match_websocket/manager/invite_api.gd" id="2_2sfya"]
 [ext_resource type="PackedScene" uid="uid://cdh401tk5h5hp" path="res://ui/general/toast/toast.tscn" id="2_m8k0u"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/auth_handler.gd" id="3_j4o5j"]
-[ext_resource type="PackedScene" uid="uid://dybwedbf1ha37" path="res://ui/title/login/login.tscn" id="3_obaba"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/start_session_handler.gd" id="4_cyk4g"]
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_lit8q"]
 [ext_resource type="PackedScene" uid="uid://b4bgblgmyerix" path="res://ui/title/main_menu/main_menu.tscn" id="4_u3ml0"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/create_session_handler.gd" id="5_t5tk1"]
 [ext_resource type="Script" path="res://api/match_websocket/handlers/invite_session_handler.gd" id="6_a00g1"]
 [ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="8_b5j28"]
+[ext_resource type="Script" path="res://pages/title_screen/region.gd" id="13_8hmq6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_evnv1"]
 font = ExtResource("4_lit8q")
@@ -50,10 +50,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_b5j28")
 
-[node name="Login" parent="UI" instance=ExtResource("3_obaba")]
-
 [node name="MainMenu" parent="UI" instance=ExtResource("4_u3ml0")]
-visible = false
+
+[node name="Version" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -47.0
+offset_right = 488.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "Pixel Tactics v0.0.1"
+label_settings = SubResource("LabelSettings_evnv1")
+vertical_alignment = 2
+
+[node name="Region" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 504.0
+offset_top = -48.0
+offset_right = 1141.0
+offset_bottom = -9.0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_evnv1")
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("13_8hmq6")
 
 [node name="Toast" parent="UI" instance=ExtResource("2_m8k0u")]
 offset_left = -272.0
@@ -61,16 +85,3 @@ offset_top = -88.0
 offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 0
-
-[node name="Label" type="Label" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -160.0
-offset_right = 680.0
-offset_bottom = -8.0
-grow_vertical = 0
-text = "Pixel Tactics v.0.1"
-label_settings = SubResource("LabelSettings_evnv1")
-vertical_alignment = 2

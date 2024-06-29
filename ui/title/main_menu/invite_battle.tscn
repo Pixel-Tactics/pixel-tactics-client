@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://c301odd6mkjvi"]
+
+[ext_resource type="StyleBox" uid="uid://c42340rnprh6b" path="res://ui/general/background/background.tres" id="1_uatud"]
+[ext_resource type="Script" path="res://ui/title/main_menu/invite_battle.gd" id="2_lpccc"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_it84m"]
+[ext_resource type="PackedScene" uid="uid://bv62b15at5vgg" path="res://ui/general/field/field.tscn" id="4_jwm17"]
+[ext_resource type="PackedScene" uid="uid://bf3gdeheqeabx" path="res://ui/general/button/button.tscn" id="5_akkow"]
+[ext_resource type="Texture2D" uid="uid://b022ai0wl0ml6" path="res://assets/ui/icons/Magnifying-Glass.png" id="6_ay7q1"]
+[ext_resource type="Texture2D" uid="uid://cocmkcc4esckt" path="res://assets/ui/icons/Redo.png" id="7_qqtkq"]
+[ext_resource type="StyleBox" uid="uid://blsb7oh08e7x3" path="res://ui/general/background/slot.tres" id="8_80ij3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
+font = ExtResource("3_it84m")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="InviteBattle" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -172.0
+offset_right = 288.0
+offset_bottom = 180.0
+theme_override_styles/panel = ExtResource("1_uatud")
+script = ExtResource("2_lpccc")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+text = "Invite Battle"
+label_settings = SubResource("LabelSettings_wtmuv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Search" type="HBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Username" parent="Container/Search" instance=ExtResource("4_jwm17")]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search Username"
+
+[node name="Search" parent="Container/Search" instance=ExtResource("5_akkow")]
+layout_mode = 2
+text = ""
+icon = ExtResource("6_ay7q1")
+
+[node name="Refresh" parent="Container/Search" instance=ExtResource("5_akkow")]
+layout_mode = 2
+text = ""
+icon = ExtResource("7_qqtkq")
+
+[node name="List" type="ScrollContainer" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("8_80ij3")
+
+[node name="Container" type="HFlowContainer" parent="Container/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16

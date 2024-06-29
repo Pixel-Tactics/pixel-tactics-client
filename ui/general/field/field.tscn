@@ -16,9 +16,9 @@ modulate_color = Color(0.694118, 0.643137, 0.529412, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75uwv"]
 
 [node name="Username" type="LineEdit"]
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_q6ufh")
 theme_override_font_sizes/font_size = 20

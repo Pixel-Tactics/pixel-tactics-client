@@ -1,18 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dybwedbf1ha37"]
+[gd_scene load_steps=7 format=3 uid="uid://dybwedbf1ha37"]
 
 [ext_resource type="Script" path="res://ui/title/login/login.gd" id="1_lf5x8"]
-[ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="2_qijg6"]
+[ext_resource type="StyleBox" uid="uid://c42340rnprh6b" path="res://ui/general/background/background.tres" id="2_h3vh6"]
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_xcyfn"]
 [ext_resource type="PackedScene" uid="uid://bv62b15at5vgg" path="res://ui/general/field/field.tscn" id="5_g28x7"]
 [ext_resource type="PackedScene" uid="uid://bf3gdeheqeabx" path="res://ui/general/button/button.tscn" id="6_y4dnm"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aoe6v"]
-texture = ExtResource("2_qijg6")
-texture_margin_left = 10.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
-modulate_color = Color(0.968627, 0.937255, 0.827451, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
 font = ExtResource("3_xcyfn")
@@ -41,7 +33,7 @@ offset_right = 136.0
 offset_bottom = 105.24
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_aoe6v")
+theme_override_styles/panel = ExtResource("2_h3vh6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
