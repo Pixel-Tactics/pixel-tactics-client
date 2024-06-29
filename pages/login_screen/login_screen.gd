@@ -123,6 +123,8 @@ func _data_request_completed(result, response_code, _headers, body, request_obj)
 		response.username,
 		int(response.level),
 		int(response.experience),
+		int(response.curExperience),
+		int(response.maxExperience),
 		int(response.rating),
 		player_token,
 	)
