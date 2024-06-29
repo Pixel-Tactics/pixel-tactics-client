@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv62b15at5vgg"]
+
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_q6ufh"]
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="2_r1wi4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5s5so"]
+texture = ExtResource("2_r1wi4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0.694118, 0.643137, 0.529412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_imloy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75uwv"]
+
+[node name="Username" type="LineEdit"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_q6ufh")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5s5so")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_imloy")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_75uwv")
+placeholder_text = "Username"

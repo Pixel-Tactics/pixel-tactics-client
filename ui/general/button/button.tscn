@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf3gdeheqeabx"]
+
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_v5wso"]
+[ext_resource type="Texture2D" uid="uid://dk3vxibcptafc" path="res://assets/ui/buttons/button_rounded_CC_2x.png" id="2_epxjd"]
+[ext_resource type="Texture2D" uid="uid://iijro8kfiws2" path="res://assets/ui/bg/Slot_rounded_CC.png" id="3_lfx0e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7s4x"]
+texture = ExtResource("2_epxjd")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.933333, 0.843137, 0.631373, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_thbtb"]
+texture = ExtResource("2_epxjd")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.870588, 0.74902, 0.462745, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p2o4"]
+texture = ExtResource("2_epxjd")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.745098, 0.623529, 0.329412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eam1g"]
+texture = ExtResource("3_lfx0e")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.745098, 0.623529, 0.329412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trieg"]
+
+[node name="Submit" type="Button"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_v5wso")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_n7s4x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_thbtb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2p2o4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_eam1g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trieg")
+text = "Button"

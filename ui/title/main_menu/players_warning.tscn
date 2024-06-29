@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://db5i2c15ywbbl"]
+
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_brhuw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vh4wu"]
+font = ExtResource("1_brhuw")
+font_size = 24
+font_color = Color(1, 1, 1, 0.498039)
+
+[node name="Warning" type="Label"]
+size_flags_horizontal = 3
+text = "No online players found"
+label_settings = SubResource("LabelSettings_vh4wu")
+horizontal_alignment = 1
+vertical_alignment = 1

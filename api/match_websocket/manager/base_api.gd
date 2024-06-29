@@ -21,7 +21,7 @@ var _name_to_handler = {}
 var _request_queue = []
 
 func ready(name_to_handler: Dictionary):
-	websocket_url = ProjectSettings.get_setting("application/config/match_service_url")
+	websocket_url = "ws://" + ProjectSettings.get_setting("application/config/match_service_url") + "/ws"
 	_name_to_handler = {
 		"AUTH": auth_handler,
 	}

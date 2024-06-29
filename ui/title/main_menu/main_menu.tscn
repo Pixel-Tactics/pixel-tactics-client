@@ -1,38 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4bgblgmyerix"]
+[gd_scene load_steps=9 format=3 uid="uid://b4bgblgmyerix"]
 
 [ext_resource type="Script" path="res://ui/title/main_menu/main_menu.gd" id="1_ceggt"]
-[ext_resource type="Texture2D" uid="uid://dul4jv84qltvu" path="res://assets/backgrounds/plains.png" id="1_egm2m"]
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_ijs1k"]
+[ext_resource type="PackedScene" uid="uid://c301odd6mkjvi" path="res://ui/title/main_menu/invite_battle.tscn" id="2_loiwi"]
 [ext_resource type="Script" path="res://ui/title/main_menu/UserStats.gd" id="3_xbx36"]
-[ext_resource type="Script" path="res://ui/title/main_menu/invite_battle_form.gd" id="3_xoq70"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po8cb"]
-bg_color = Color(0.717647, 0.717647, 0.717647, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.717647, 0.717647, 0.717647, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
-font = ExtResource("2_ijs1k")
-font_size = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euw3q"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 1)
-border_color = Color(0.717647, 0.717647, 0.717647, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[ext_resource type="StyleBox" uid="uid://c42340rnprh6b" path="res://ui/general/background/background.tres" id="4_6txdx"]
+[ext_resource type="StyleBox" uid="uid://blsb7oh08e7x3" path="res://ui/general/background/slot.tres" id="8_xi73y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1uog2"]
 font = ExtResource("2_ijs1k")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
+font = ExtResource("2_ijs1k")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -43,54 +25,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ceggt")
 
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_egm2m")
-
-[node name="InviteBattle" type="PanelContainer" parent="."]
+[node name="InviteBattle" parent="." instance=ExtResource("2_loiwi")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -60.0
-offset_right = 136.0
-offset_bottom = 58.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_po8cb")
-script = ExtResource("3_xoq70")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InviteBattle"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="Label" type="Label" parent="InviteBattle/VBoxContainer"]
-layout_mode = 2
-text = "Invite Battle"
-label_settings = SubResource("LabelSettings_wtmuv")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InviteForm" type="VBoxContainer" parent="InviteBattle/VBoxContainer"]
-custom_minimum_size = Vector2(256, 64)
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="UserId" type="LineEdit" parent="InviteBattle/VBoxContainer/InviteForm"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ijs1k")
-placeholder_text = "Username"
-
-[node name="Submit" type="Button" parent="InviteBattle/VBoxContainer/InviteForm"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ijs1k")
-text = "Submit"
 
 [node name="UserStats" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -98,7 +35,7 @@ offset_left = 24.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 104.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_po8cb")
+theme_override_styles/panel = ExtResource("4_6txdx")
 script = ExtResource("3_xbx36")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UserStats"]
@@ -107,7 +44,7 @@ theme_override_constants/separation = 8
 
 [node name="LevelBox" type="PanelContainer" parent="UserStats/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_euw3q")
+theme_override_styles/panel = ExtResource("8_xi73y")
 
 [node name="LevelLabel" type="Label" parent="UserStats/HBoxContainer/LevelBox"]
 custom_minimum_size = Vector2(64, 39)
@@ -123,6 +60,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="UserStats/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(254, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Meervix (Rating: 1800)"
 label_settings = SubResource("LabelSettings_wtmuv")
 vertical_alignment = 1

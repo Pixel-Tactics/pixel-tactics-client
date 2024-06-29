@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://kxrg67kvylvp"]
+
+[ext_resource type="StyleBox" uid="uid://c42340rnprh6b" path="res://ui/general/background/background.tres" id="1_23liv"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_7pajs"]
+[ext_resource type="Script" path="res://ui/title/main_menu/invite_box.gd" id="2_yri6s"]
+[ext_resource type="PackedScene" uid="uid://bf3gdeheqeabx" path="res://ui/general/button/button.tscn" id="3_q4dgw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtmuv"]
+font = ExtResource("2_7pajs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="InviteBox" type="PanelContainer"]
+custom_minimum_size = Vector2(240, 99)
+offset_right = 240.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_23liv")
+script = ExtResource("2_yri6s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Meervix (1800)"
+label_settings = SubResource("LabelSettings_wtmuv")
+vertical_alignment = 1
+
+[node name="Submit" parent="VBoxContainer" instance=ExtResource("3_q4dgw")]
+layout_mode = 2
+text = "Invite"
