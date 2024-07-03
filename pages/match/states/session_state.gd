@@ -13,8 +13,5 @@ func _init(init_match_manager: MatchManager):
 	match_api = match_manager.match_api
 	map_manager = match_manager.map_manager
 
-func clear():
-	pass
-
 func update():
 	pass

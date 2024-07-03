@@ -11,10 +11,6 @@ func _init(init_match_manager: MatchManager):
 	ui_manager.hero_submitted.connect(_on_hero_submit.bind())
 	match_api.state_changed.connect(_on_state_changed.bind())
 
-func clear():
-	ui_manager.hero_submitted.disconnect(_on_hero_submit.bind())
-	match_api.state_changed.disconnect(_on_state_changed.bind())
-
 func update():
 	if not ui_changed:
 		ui_manager.ChangeUI("PREPARATION", {

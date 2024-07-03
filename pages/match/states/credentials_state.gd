@@ -9,10 +9,6 @@ func _init(init_match_manager: MatchManager):
 	ui_manager.credentials_submitted.connect(_on_credentials_submit.bind())
 	match_api.auth_received.connect(_on_credentials_loaded.bind())
 
-func clear():
-	ui_manager.credentials_submitted.disconnect(_on_credentials_submit.bind())
-	match_api.auth_received.disconnect(_on_credentials_loaded.bind())
-
 func update():
 	if not ui_changed:
 		match_manager.ui_manager.ChangeUI("CREDENTIALS")

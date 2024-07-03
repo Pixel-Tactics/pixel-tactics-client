@@ -18,9 +18,6 @@ func _init(init_match_manager: MatchManager):
 	match_api.attack_accepted.connect(_on_attack_accepted.bind())
 	match_api.state_changed.connect(_on_state_changed.bind())
 
-func clear():
-	pass
-
 func update():
 	if not ui_changed:
 		var is_player = match_manager.is_player_active()

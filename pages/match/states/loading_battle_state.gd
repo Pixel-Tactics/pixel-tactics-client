@@ -7,9 +7,6 @@ var hero_prepared = false
 func _init(init_match_manager: MatchManager):
 	super(init_match_manager)
 
-func clear():
-	pass
-
 func update():
 	if not hero_prepared:
 		ui_manager.ChangeUI("LOADING")

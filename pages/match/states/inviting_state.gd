@@ -9,9 +9,6 @@ func _init(init_match_manager: MatchManager):
 	super(init_match_manager)
 	match_api.session_started.connect(_on_session_started.bind())
 
-func clear():
-	match_api.session_started.disconnect(_on_session_started.bind())
-
 func update():
 	if not opponent_invited:
 		ui_manager.ChangeUI("LOADING")

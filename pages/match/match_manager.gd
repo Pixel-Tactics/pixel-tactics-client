@@ -16,7 +16,6 @@ func _process(_delta):
 		current_state.update()
 
 func change_match_state(new_state: SessionState):
-	current_state.clear()
 	current_state = new_state
 
 func is_player_active():

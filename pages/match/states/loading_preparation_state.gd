@@ -12,10 +12,6 @@ func _init(init_match_manager: MatchManager):
 	match_api.session_get.connect(_on_session_get.bind())
 	match_api.time_synced.connect(_on_time_synced.bind())
 
-func clear():
-	match_api.session_get.disconnect(_on_session_get.bind())
-	match_api.time_synced.disconnect(_on_time_synced.bind())
-
 func update():
 	if not request_sent:
 		ui_manager.ChangeUI("LOADING")

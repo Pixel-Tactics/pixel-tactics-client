@@ -21,9 +21,6 @@ func _init(init_match_manager: MatchManager, new_state: Dictionary):
 	super(init_match_manager)
 	_new_state = new_state
 
-func clear():
-	pass
-
 func update():
 	var cur_time = Time.get_unix_time_from_system()
 	match _state_name:
