@@ -1,7 +1,11 @@
 extends TextureRect
 
-func _ready():
-	_tween_up()
+var _is_ready = false
+
+func _process(_delta):
+	if not _is_ready:
+		_is_ready = true
+		_tween_up()
 
 func _tween_down():
 	var tree = get_tree()
