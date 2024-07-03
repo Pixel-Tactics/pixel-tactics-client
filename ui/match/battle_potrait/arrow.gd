@@ -8,10 +8,9 @@ func _process(_delta):
 		_tween_up()
 
 func _tween_down():
-	var tree = get_tree()
-	if tree == null:
+	if not is_inside_tree():
 		return
-	var tween = tree.create_tween()
+	var tween = get_tree().create_tween()
 	tween.tween_property(
 		self,
 		"position",
@@ -21,10 +20,9 @@ func _tween_down():
 	tween.tween_callback(_tween_up)
 
 func _tween_up():
-	var tree = get_tree()
-	if tree == null:
+	if not is_inside_tree():
 		return
-	var tween = tree.create_tween()
+	var tween = get_tree().create_tween()
 	tween.tween_property(
 		self,
 		"position",
