@@ -6,8 +6,7 @@ signal time_synced
 signal session_get
 signal player_prepared
 signal state_changed
-signal move_accepted
-signal attack_accepted
+signal action_accepted
 
 @onready var server_time_handler = $ServerTimeHandler
 @onready var get_session_handler = $GetSessionHandler
@@ -31,8 +30,7 @@ func _ready():
 	get_session_handler.success_received.connect(_on_get_session)
 	prepare_player_handler.success_received.connect(_on_player_prepared)
 	state_change_handler.success_received.connect(_on_state_change)
-	apply_action_handler.move_accepted.connect(_on_move_accept)
-	apply_action_handler.attack_accepted.connect(_on_attack_accept)
+	apply_action_handler.action_accepted.connect(_on_action_accept)
 
 func _on_get_session(session_data: Dictionary):
 	emit_signal("session_get", session_data)
@@ -46,8 +44,5 @@ func _on_player_prepared():
 func _on_state_change(session_data: Dictionary):
 	emit_signal("state_changed", session_data)
 
-func _on_move_accept(action_data: Dictionary):
-	emit_signal("move_accepted", action_data)
-
-func _on_attack_accept(action_data: Dictionary):
-	emit_signal("attack_accepted", action_data)
+func _on_action_accept(action_data: Dictionary):
+	self.action_accepted.emit(action_data)

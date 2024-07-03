@@ -71,10 +71,10 @@ func _generate_boundaries():
 		for j in range(-16, 16):
 			tilemap.set_cell(0, Vector2i(i, j), 0, Vector2i(1, 2))
 
-func map_to_world(pos: Vector2):
+func map_to_world(pos: Vector2i) -> Vector2:
 	return tilemap.map_to_local(pos)
 	
-func world_to_map(pos: Vector2):
+func world_to_map(pos: Vector2) -> Vector2i:
 	return tilemap.local_to_map(pos)
 
 func update_map(_new_map):
@@ -83,18 +83,29 @@ func update_map(_new_map):
 func get_map():
 	return map_state
 
-func vector_plus_directions(vector, dir_list):
+func vector_plus_direction(vector: Vector2i, dir) -> Vector2i:
 	var diff = Vector2i(0,0)
-	for dir in dir_list:
-		if dir == "RIGHT":
-			diff += Vector2i(1,0)
-		elif dir == "LEFT":
-			diff += Vector2i(-1,0)
-		elif dir == "UP":
-			diff += Vector2i(0,-1)
-		else:
-			diff += Vector2i(0,1)
+	if dir == "RIGHT":
+		diff += Vector2i(1,0)
+	elif dir == "LEFT":
+		diff += Vector2i(-1,0)
+	elif dir == "UP":
+		diff += Vector2i(0,-1)
+	else:
+		diff += Vector2i(0,1)
 	return vector + diff
+
+func vector_plus_directions(vector, dir_list) -> Vector2i:
+	for dir in dir_list:
+		vector = vector_plus_direction(vector, dir)
+	return vector
+
+func vector_plus_directions_progress(vector, dir_list) -> Array[Vector2i]:
+	var ret: Array[Vector2i] = []
+	for dir in dir_list:
+		vector = vector_plus_direction(vector, dir)
+		ret.push_back(vector)
+	return ret
 
 func _on_move_tile_pressed(pos: Vector2):
 	var map_pos = world_to_map(pos)

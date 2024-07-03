@@ -7,6 +7,9 @@ var request_sent = false
 var started = false
 
 var selected_hero: BaseHero = null
+var action_list = []
+var applied_action_idx = -1
+var in_animation = false
 
 func _init(init_match_manager: MatchManager):
 	super(init_match_manager)
@@ -14,8 +17,7 @@ func _init(init_match_manager: MatchManager):
 	ui_manager.end_turn.connect(_on_end_turn.bind())
 	map_manager.move_tile_selected.connect(_on_hero_move.bind())
 	map_manager.attack_tile_selected.connect(_on_hero_attack.bind())
-	match_api.move_accepted.connect(_on_move_accepted.bind())
-	match_api.attack_accepted.connect(_on_attack_accepted.bind())
+	match_api.action_accepted.connect(_on_action_accepted.bind())
 	match_api.state_changed.connect(_on_state_changed.bind())
 
 func update():
@@ -28,6 +30,51 @@ func update():
 			"init_deadline": Global.current_session.state.deadline,
 		})
 		ui_changed = true
+		return
+	
+	if applied_action_idx < len(action_list) - 1:
+		applied_action_idx += 1
+		var cur_action = action_list[applied_action_idx]
+		if cur_action["name"] == "move":
+			_anim_hero_move(cur_action)
+		if cur_action["name"] == "attack":
+			_anim_hero_attack(cur_action)
+
+func _anim_hero_move(action: Dictionary):
+	if Global.current_session == null:
+		return
+	var player = match_manager.get_player_by_id(action["playerId"])
+	if not player:
+		return
+	var hero = player.get_hero_from_name(action["hero"])
+	if not hero:
+		return
+	
+	var hero_pos = map_manager.world_to_map(hero.position)
+	var target_poses = map_manager.vector_plus_directions_progress(
+		hero_pos,
+		action["directionList"]
+	)
+	var target_wld_poses: Array[Vector2] = []
+	for cur_pos in target_poses:
+		var cur_wld_pos = map_manager.map_to_world(cur_pos)
+		target_wld_poses.push_back(cur_wld_pos)
+	if len(target_wld_poses) > 0:
+		hero.move_completed.connect(_anim_hero_move_ended)
+		hero.move_multiple(target_wld_poses)
+	else:
+		_anim_hero_move_ended(hero, true)
+
+func _anim_hero_move_ended(hero, direct = false):
+	if not direct:
+		hero.move_completed.disconnect(_anim_hero_move_ended)
+	if selected_hero == hero:
+		var map = Global.current_session.map
+		var hero_pos = map_manager.world_to_map(hero.position)
+		map_manager.make_attack_tiles(map, hero_pos, hero.attack_range)
+
+func _anim_hero_attack(action: Dictionary):
+	pass
 
 func _on_hero_select(hero: BaseHero):
 	if selected_hero == null and match_manager.is_player_active():
@@ -68,36 +115,44 @@ func _on_hero_attack(target_pos: Vector2i):
 		})
 		match_manager.map_manager.remove_tiles()
 
-func _on_move_accepted(action_specific: Dictionary):
-	if Global.current_session == null:
+func _on_action_accepted(action_data: Dictionary):
+	var order = action_data["order"]
+	if len(action_list) != order:
+		# TODO: Add get session
+		push_warning("order not matching, getting session..")
 		return
-	var player = match_manager.get_player_by_id(action_specific["playerId"])
-	if not player:
-		return
-	var hero = player.get_hero_from_name(action_specific["hero"])
-	if not hero:
-		return
-	var hero_pos = match_manager.map_manager.world_to_map(hero.position)
-	var new_pos = match_manager.map_manager.vector_plus_directions(
-		hero_pos,
-		action_specific["directionList"]
-	)
-	var new_pos_world = match_manager.map_manager.map_to_world(new_pos)
-	hero.position = new_pos_world
-	if selected_hero == hero:
-		var map = Global.current_session.map
-		match_manager.map_manager.make_attack_tiles(map, new_pos, hero.attack_range)
+	action_list.push_back(action_data)
 
-func _on_attack_accepted(action_specific: Dictionary):
-	if Global.current_session == null:
-		return
-	var player = match_manager.get_opponent_by_id(action_specific["playerId"])
-	if not player:
-		return
-	var target = player.get_hero_from_name(action_specific["target"])
-	if not target:
-		return
-	target.damage_hero(action_specific["damage"])
+#func _on_move_accepted(action_specific: Dictionary):
+	#if Global.current_session == null:
+		#return
+	#var player = match_manager.get_player_by_id(action_specific["playerId"])
+	#if not player:
+		#return
+	#var hero = player.get_hero_from_name(action_specific["hero"])
+	#if not hero:
+		#return
+	#var hero_pos = match_manager.map_manager.world_to_map(hero.position)
+	#var new_pos = match_manager.map_manager.vector_plus_directions(
+		#hero_pos,
+		#action_specific["directionList"]
+	#)
+	#var new_pos_world = match_manager.map_manager.map_to_world(new_pos)
+	#hero.position = new_pos_world
+	#if selected_hero == hero:
+		#var map = Global.current_session.map
+		#match_manager.map_manager.make_attack_tiles(map, new_pos, hero.attack_range)
+#
+#func _on_attack_accepted(action_specific: Dictionary):
+	#if Global.current_session == null:
+		#return
+	#var player = match_manager.get_opponent_by_id(action_specific["playerId"])
+	#if not player:
+		#return
+	#var target = player.get_hero_from_name(action_specific["target"])
+	#if not target:
+		#return
+	#target.damage_hero(action_specific["damage"])
 
 func _on_end_turn():
 	match_manager.match_api.send_request("END_TURN")

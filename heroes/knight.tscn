@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://3w4yorrbh8w8"]
+[gd_scene load_steps=2 format=3 uid="uid://3w4yorrbh8w8"]
 
 [ext_resource type="PackedScene" uid="uid://bqa5hsnlj4ane" path="res://heroes/base_hero.tscn" id="1_2wdqa"]
-[ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_7du0i"]
 
 [node name="Knight" instance=ExtResource("1_2wdqa")]
 hero_name = "Knight"
@@ -9,6 +8,3 @@ max_health = 10
 health = 10
 attack_range = 1
 move_range = 3
-
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_7du0i")
