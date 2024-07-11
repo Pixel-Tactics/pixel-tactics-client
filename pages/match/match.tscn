@@ -453,6 +453,8 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="Heroes" type="Node2D" parent="Map"]
 
+[node name="Projectiles" type="Node2D" parent="Map"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(152, 160)
 zoom = Vector2(2, 2)

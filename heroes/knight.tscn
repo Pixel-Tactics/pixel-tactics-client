@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://3w4yorrbh8w8"]
+[gd_scene load_steps=3 format=3 uid="uid://3w4yorrbh8w8"]
 
 [ext_resource type="PackedScene" uid="uid://bqa5hsnlj4ane" path="res://heroes/base_hero.tscn" id="1_2wdqa"]
+[ext_resource type="Script" path="res://heroes/scripts/knight.gd" id="2_sv82l"]
 
 [node name="Knight" instance=ExtResource("1_2wdqa")]
+script = ExtResource("2_sv82l")
 hero_name = "Knight"
 max_health = 10
-health = 10
 attack_range = 1
 move_range = 3
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+animation = &"attack"

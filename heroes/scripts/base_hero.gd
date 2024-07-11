@@ -5,11 +5,14 @@ class_name BaseHero
 signal status_updated
 signal move_completed
 
+signal animation_attack_started
+signal animation_ended
+
 @export var hero_name: String = "Base"
 @export var texture: Texture2D
 
 @export var max_health: int
-@export var health: int
+var health: int
 @export var attack_range: int
 @export var move_range: int
 @export var basic_attack_path: String
@@ -18,23 +21,30 @@ signal move_completed
 var _move_target_positions: Array[Vector2] = []
 var _speed = 120
 
-#var BasicAttack
-#
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-	#BasicAttack = load(basic_attack_path)
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-	
+# Attack
+var attack_animation: BaseAttackAnimation = null
+var _attack_start_frame = 0
+var _attack_end_frame = 0
+
+# Animation
+@onready var _animated_sprite = $AnimatedSprite2D
+
 func _ready():
-	#_move_target_positions = [Vector2(120,120), Vector2(50, 50)]
-	pass
-	
+	health = max_health
+	_animated_sprite.frame_changed.connect(
+		func():
+			if _animated_sprite.animation == "attack" \
+					and _animated_sprite.frame == _attack_start_frame:
+				animation_attack_started.emit()
+	)
+	_animated_sprite.animation_finished.connect(
+		func():
+			if _animated_sprite.animation != "default":
+				animation_ended.emit(_animated_sprite.animation)
+	)
+
 func _process(delta):
 	_update_position(delta)
-	pass
 
 func _update_position(delta):
 	if len(_move_target_positions) == 0:
@@ -60,6 +70,12 @@ func move_multiple(target_positions: Array[Vector2]):
 
 func move(target_position: Vector2):
 	move_multiple([target_position])
+
+func play_animation(animation_name):
+	_animated_sprite.animation_finished.connect(
+		func(): _animated_sprite.play("default")
+	)
+	_animated_sprite.play(animation_name)
 
 func damage_hero(diff: int):
 	health = max(health - diff, 0)

@@ -10,6 +10,7 @@ signal attack_tile_selected
 @onready var tilemap = $TileMap
 @onready var action_tiles = $ActionTiles
 @onready var heroes = $Heroes
+@onready var projectiles = $Projectiles
 
 var map_state = null
 var last_bfs_result = {}

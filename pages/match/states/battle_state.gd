@@ -2,17 +2,27 @@ extends SessionState
 
 class_name BattleState
 
+enum UpdateType {
+	STATE_CHANGE,
+	ACTION,
+}
+
 var ui_changed = false
 var request_sent = false
 var started = false
 
 var selected_hero: BaseHero = null
-var action_list = []
-var applied_action_idx = -1
+var update_list = []
+var update_type_count = {}
+var applied_update_idx = -1
 var in_animation = false
 
 func _init(init_match_manager: MatchManager):
 	super(init_match_manager)
+	
+	for val in UpdateType.values():
+		update_type_count[val] = 0
+	
 	ui_manager.hero_start_request.connect(_on_hero_select.bind())
 	ui_manager.end_turn.connect(_on_end_turn.bind())
 	map_manager.move_tile_selected.connect(_on_hero_move.bind())
@@ -32,13 +42,19 @@ func update():
 		ui_changed = true
 		return
 	
-	if applied_action_idx < len(action_list) - 1:
-		applied_action_idx += 1
-		var cur_action = action_list[applied_action_idx]
-		if cur_action["name"] == "move":
-			_anim_hero_move(cur_action)
-		if cur_action["name"] == "attack":
-			_anim_hero_attack(cur_action)
+	if applied_update_idx < len(update_list) - 1 and not in_animation:
+		applied_update_idx += 1
+		var cur_update = update_list[applied_update_idx]
+		match cur_update[0]:
+			UpdateType.ACTION:
+				match cur_update[1]["name"]:
+					"move":
+						_anim_hero_move(cur_update[1])
+					"attack":
+						_anim_hero_attack(cur_update[1])
+						
+			UpdateType.STATE_CHANGE:
+				_state_change(cur_update[1])
 
 func _anim_hero_move(action: Dictionary):
 	if Global.current_session == null:
@@ -60,6 +76,7 @@ func _anim_hero_move(action: Dictionary):
 		var cur_wld_pos = map_manager.map_to_world(cur_pos)
 		target_wld_poses.push_back(cur_wld_pos)
 	if len(target_wld_poses) > 0:
+		in_animation = true
 		hero.move_completed.connect(_anim_hero_move_ended)
 		hero.move_multiple(target_wld_poses)
 	else:
@@ -68,13 +85,43 @@ func _anim_hero_move(action: Dictionary):
 func _anim_hero_move_ended(hero, direct = false):
 	if not direct:
 		hero.move_completed.disconnect(_anim_hero_move_ended)
-	if selected_hero == hero:
+	if selected_hero == hero and applied_update_idx == len(update_list) - 1:
 		var map = Global.current_session.map
 		var hero_pos = map_manager.world_to_map(hero.position)
 		map_manager.make_attack_tiles(map, hero_pos, hero.attack_range)
+	in_animation = false
 
 func _anim_hero_attack(action: Dictionary):
-	pass
+	if Global.current_session == null:
+		return
+	
+	var player = match_manager.get_player_by_id(action["playerId"])
+	if not player:
+		return	
+	var opponent = match_manager.get_opponent_by_id(action["playerId"])
+	if not opponent:
+		return
+		
+	var hero = player.get_hero_from_name(action["hero"])
+	if not hero:
+		return
+	var target = opponent.get_hero_from_name(action["target"])
+	if not target:
+		return
+	
+	in_animation = true
+	hero.attack_animation.animation_ended.connect(
+		_anim_hero_attack_ended.bind(target, action["damage"])
+	)
+	hero.attack_animation.start_animation(
+		Vector2.ZERO,
+		[target] as Array[BaseHero],
+		map_manager.projectiles
+	)
+
+func _anim_hero_attack_ended(target, damage):
+	target.damage_hero(damage)
+	in_animation = false
 
 func _on_hero_select(hero: BaseHero):
 	if selected_hero == null and match_manager.is_player_active():
@@ -117,32 +164,22 @@ func _on_hero_attack(target_pos: Vector2i):
 
 func _on_action_accepted(action_data: Dictionary):
 	var order = action_data["order"]
-	if len(action_list) != order:
+	if update_type_count[UpdateType.ACTION] != order:
 		# TODO: Add get session
 		push_warning("order not matching, getting session..")
 		return
-	action_list.push_back(action_data)
+	update_type_count[UpdateType.ACTION] += 1
+	update_list.push_back([UpdateType.ACTION, action_data])
 
-#func _on_move_accepted(action_specific: Dictionary):
-	#if Global.current_session == null:
-		#return
-	#var player = match_manager.get_player_by_id(action_specific["playerId"])
-	#if not player:
-		#return
-	#var hero = player.get_hero_from_name(action_specific["hero"])
-	#if not hero:
-		#return
-	#var hero_pos = match_manager.map_manager.world_to_map(hero.position)
-	#var new_pos = match_manager.map_manager.vector_plus_directions(
-		#hero_pos,
-		#action_specific["directionList"]
-	#)
-	#var new_pos_world = match_manager.map_manager.map_to_world(new_pos)
-	#hero.position = new_pos_world
-	#if selected_hero == hero:
-		#var map = Global.current_session.map
-		#match_manager.map_manager.make_attack_tiles(map, new_pos, hero.attack_range)
-#
+func _on_state_changed(session_data: Dictionary):
+	var order = len(session_data["actionLog"])
+	if update_type_count[UpdateType.ACTION] != order:
+		# TODO: Add get session
+		push_warning("order not matching, getting session..")
+		return
+	update_type_count[UpdateType.STATE_CHANGE] += 1
+	update_list.push_back([UpdateType.STATE_CHANGE, session_data])
+
 #func _on_attack_accepted(action_specific: Dictionary):
 	#if Global.current_session == null:
 		#return
@@ -157,7 +194,8 @@ func _on_action_accepted(action_data: Dictionary):
 func _on_end_turn():
 	match_manager.match_api.send_request("END_TURN")
 
-func _on_state_changed(session_data: Dictionary):
+func _state_change(session_data: Dictionary):
+	# TODO: put action UI to stop if player in_animation
 	var new_state = session_data.state
 	if new_state.name == "PLAYER_1_TURN" or new_state.name == "PLAYER_2_TURN":
 		Global.current_session.state = new_state

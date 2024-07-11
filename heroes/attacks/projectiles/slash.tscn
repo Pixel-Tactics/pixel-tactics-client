@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bepbmxxkb2dbm"]
+
+[ext_resource type="Script" path="res://heroes/attacks/projectiles/projectile.gd" id="1_tikt2"]
+[ext_resource type="SpriteFrames" uid="uid://cgm387k7uihht" path="res://heroes/attacks/projectiles/slash.tres" id="2_gttv4"]
+
+[node name="Slash" type="Node2D"]
+z_index = 10
+script = ExtResource("1_tikt2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.645, 1.645)
+sprite_frames = ExtResource("2_gttv4")
+frame = 16
+frame_progress = 1.0
