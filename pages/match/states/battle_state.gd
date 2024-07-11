@@ -111,7 +111,7 @@ func _anim_hero_attack(action: Dictionary):
 	
 	in_animation = true
 	hero.attack_animation.animation_ended.connect(
-		_anim_hero_attack_ended.bind(target, action["damage"])
+		_anim_hero_attack_ended.bind(hero, target, action["damage"])
 	)
 	hero.attack_animation.start_animation(
 		Vector2.ZERO,
@@ -119,7 +119,10 @@ func _anim_hero_attack(action: Dictionary):
 		map_manager.projectiles
 	)
 
-func _anim_hero_attack_ended(target, damage):
+func _anim_hero_attack_ended(hero, target, damage):
+	hero.attack_animation.animation_ended.disconnect(
+		_anim_hero_attack_ended
+	)
 	target.damage_hero(damage)
 	in_animation = false
 

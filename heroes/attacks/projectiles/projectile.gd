@@ -8,10 +8,8 @@ var _emitted = false
 func _ready():
 	_animated_sprite.animation_finished.connect(
 		func():
-			push_error("EMITTING PROJECTILE")
 			if _emitted:
 				return
-			push_error(self)
 			_emitted = true
 			animation_ended.emit()
 	)
