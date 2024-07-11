@@ -29,7 +29,6 @@ func _create_slash(hero: BaseHero, targets: Array[BaseHero], parent_obj: Node):
 	proj.animation_ended.connect(
 		func():
 			proj.queue_free()
-			_hero.play_animation("default")
 			_is_playing = false
 			animation_ended.emit()
 	)

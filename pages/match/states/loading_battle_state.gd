@@ -14,13 +14,16 @@ func update():
 	else:
 		match_manager.change_match_state(BattleState.new(match_manager))
 
-func _load_player_hero(player: Player):
+func _load_player_hero(player: Player, is_player: bool):
 	var hero_list: Array[BaseHero] = []
 	for raw_hero in player.raw_hero_list:
 		var hero_template = Global.current_session.heroes_template[raw_hero.template.name]
 		var hero: BaseHero = hero_template.instantiate()
 		var map_pos = Vector2(raw_hero.pos.x, raw_hero.pos.y)
 		hero.position = match_manager.map_manager.map_to_world(map_pos)
+		if is_player:
+			hero.set_has_highlight(true)
+			#hero.set_highlight(true)
 		match_manager.map_manager.heroes.add_child(hero)
 		hero_list.append(hero)
 	player.hero_list = hero_list
@@ -28,6 +31,6 @@ func _load_player_hero(player: Player):
 func _load_hero():
 	var player = Global.current_session.player
 	var opponent = Global.current_session.opponent
-	_load_player_hero(player)
-	_load_player_hero(opponent)
+	_load_player_hero(player, true)
+	_load_player_hero(opponent, false)
 	hero_prepared = true

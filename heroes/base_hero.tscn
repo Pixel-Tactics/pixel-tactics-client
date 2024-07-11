@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqa5hsnlj4ane"]
+[gd_scene load_steps=6 format=3 uid="uid://bqa5hsnlj4ane"]
 
 [ext_resource type="Script" path="res://heroes/scripts/base_hero.gd" id="1_0bfib"]
 [ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_hainm"]
 [ext_resource type="SpriteFrames" uid="uid://bf8srcq4v441k" path="res://heroes/sheets/knight.tres" id="3_3evxa"]
+[ext_resource type="Shader" path="res://heroes/sprite_outline.gdshader" id="3_ysgy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cj6t"]
+shader = ExtResource("3_ysgy8")
+shader_parameter/line_color = Color(0.568627, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 
 [node name="BaseHero" type="Node2D"]
 z_index = 2
@@ -16,6 +22,8 @@ scale = Vector2(1.645, 1.645)
 texture = ExtResource("2_hainm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8cj6t")
 position = Vector2(0, -12)
 scale = Vector2(1.645, 1.645)
 sprite_frames = ExtResource("3_3evxa")
+frame_progress = 1.0

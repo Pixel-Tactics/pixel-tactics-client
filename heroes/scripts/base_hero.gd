@@ -26,11 +26,16 @@ var attack_animation: BaseAttackAnimation = null
 var _attack_start_frame = 0
 var _attack_end_frame = 0
 
+# Highlight
+var _has_highlight: bool = false
+
 # Animation
 @onready var _animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	health = max_health
+	_animated_sprite.material = _animated_sprite.material.duplicate()
+	set_highlight(_has_highlight)
 	_animated_sprite.frame_changed.connect(
 		func():
 			if _animated_sprite.animation == "attack" \
@@ -71,9 +76,23 @@ func move_multiple(target_positions: Array[Vector2]):
 func move(target_position: Vector2):
 	move_multiple([target_position])
 
+func set_has_highlight(has_highlight: bool):
+	_has_highlight = has_highlight
+
+func set_highlight(is_active: bool):
+	var new_value = 1 if is_active and _has_highlight else 0
+	var shader_material = _animated_sprite.material as ShaderMaterial
+	var last_value = shader_material.get_shader_parameter("line_thickness")
+	if last_value != new_value:
+		shader_material.set_shader_parameter("line_thickness", new_value)
+
 func play_animation(animation_name):
+	set_highlight(false)
 	_animated_sprite.animation_finished.connect(
-		func(): _animated_sprite.play("default")
+		func():
+			if _animated_sprite.animation != "default":
+				set_highlight(true)
+				_animated_sprite.play("default")
 	)
 	_animated_sprite.play(animation_name)
 
