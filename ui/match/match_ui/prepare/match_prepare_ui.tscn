@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://djwxrfyo63aj"]
+[gd_scene load_steps=8 format=3 uid="uid://djwxrfyo63aj"]
 
 [ext_resource type="Script" path="res://ui/match/match_ui/prepare/match_prepare_ui.gd" id="1_ldhp2"]
+[ext_resource type="PackedScene" uid="uid://bf3gdeheqeabx" path="res://ui/general/button/button.tscn" id="2_3qk1v"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_e1eti"]
 [ext_resource type="PackedScene" uid="uid://bp2i0tl06ec16" path="res://ui/general/timer/timer.tscn" id="5_rqxpr"]
+
+[sub_resource type="Gradient" id="Gradient_juv58"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6oo16"]
+gradient = SubResource("Gradient_juv58")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rf6o2"]
+line_spacing = 0.0
+font = ExtResource("4_e1eti")
+font_size = 32
 
 [node name="MatchPrepareUI" type="Control"]
 layout_mode = 3
@@ -12,17 +25,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ldhp2")
 
-[node name="Button" type="Button" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.305882)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.507
-anchor_top = 1.0
-anchor_right = 0.507
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -136.064
-offset_top = -272.0
-offset_right = 119.936
-offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6oo16")
+
+[node name="Button" parent="." instance=ExtResource("2_3qk1v")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 376.0
+offset_right = 704.0
+offset_bottom = 421.0
 text = "Choose"
 
 [node name="Timer" parent="." instance=ExtResource("5_rqxpr")]
@@ -33,6 +51,7 @@ offset_top = 32.0
 offset_right = 72.0
 offset_bottom = 77.0
 grow_horizontal = 1
+label_settings = SubResource("LabelSettings_rf6o2")
 
 [node name="HeroList" type="GridContainer" parent="."]
 layout_mode = 1

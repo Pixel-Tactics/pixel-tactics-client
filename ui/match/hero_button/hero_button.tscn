@@ -1,17 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy5hxeot6rbua"]
+[gd_scene load_steps=7 format=3 uid="uid://dy5hxeot6rbua"]
 
-[ext_resource type="Texture2D" uid="uid://bxwn8teiixow" path="res://assets/ui/panel-transparent-center-031.png" id="1_370sc"]
+[ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="1_uekpm"]
 [ext_resource type="Script" path="res://ui/match/hero_button/hero_button.gd" id="2_lkoes"]
 [ext_resource type="Texture2D" uid="uid://dfu8gf5budi4d" path="res://assets/knight.svg" id="2_tr436"]
+[ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_1oy7w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lyki6"]
+font = ExtResource("4_1oy7w")
 font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv85c"]
 
 [node name="HeroButton" type="NinePatchRect"]
+self_modulate = Color(0.933333, 0.843137, 0.631373, 1)
 custom_minimum_size = Vector2(160, 40)
 offset_right = 160.0
 offset_bottom = 40.0
-texture = ExtResource("1_370sc")
+texture = ExtResource("1_uekpm")
 patch_margin_left = 14
 patch_margin_top = 14
 patch_margin_right = 14
@@ -35,7 +41,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -112.0
-offset_right = -24.0
+offset_right = -8.0
 offset_bottom = 40.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 1
@@ -49,3 +55,4 @@ layout_mode = 0
 offset_right = 160.0
 offset_bottom = 40.0
 theme_type_variation = &"FlatButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bv85c")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://gq57wo6y1ia2"]
+[gd_scene load_steps=17 format=3 uid="uid://gq57wo6y1ia2"]
 
 [ext_resource type="FontFile" uid="uid://djhm3qfxrwesl" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_0m4n1"]
-[ext_resource type="StyleBox" uid="uid://sn2u8vgcjkc8" path="res://ui/match/match_ui/results/button.tres" id="1_278ek"]
 [ext_resource type="Script" path="res://ui/match/match_ui/results/results_ui.gd" id="1_dwcmu"]
 [ext_resource type="Texture2D" uid="uid://chpn801ffadae" path="res://assets/ui/bg/Background_CC_rounded.png" id="1_vluwf"]
 [ext_resource type="Texture2D" uid="uid://dk3vxibcptafc" path="res://assets/ui/buttons/button_rounded_CC_2x.png" id="1_y3njj"]
@@ -15,6 +14,7 @@ texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
+modulate_color = Color(0.968627, 0.937255, 0.827451, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_venyc"]
 font = ExtResource("1_0m4n1")
@@ -32,25 +32,41 @@ texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
-modulate_color = Color(0.494118, 0.494118, 0.494118, 1)
+modulate_color = Color(0.662745, 0.603922, 0.486275, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwxlu"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7s4x"]
 texture = ExtResource("1_y3njj")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
-modulate_color = Color(0.886275, 0.886275, 0.886275, 1)
+modulate_color = Color(0.933333, 0.843137, 0.631373, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h62yn"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_thbtb"]
 texture = ExtResource("1_y3njj")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
-modulate_color = Color(0.54902, 0.54902, 0.54902, 1)
+modulate_color = Color(0.870588, 0.74902, 0.462745, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svcao"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p2o4"]
+texture = ExtResource("1_y3njj")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.745098, 0.623529, 0.329412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eam1g"]
+texture = ExtResource("2_3w4mn")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.745098, 0.623529, 0.329412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trieg"]
 
 [node name="MatchResultUI" type="Control"]
 layout_mode = 3
@@ -137,9 +153,10 @@ theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_0m4n1")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = ExtResource("1_278ek")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qwxlu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_h62yn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_svcao")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n7s4x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_thbtb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2p2o4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_eam1g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trieg")
 text = "MAIN MENU"
 icon = ExtResource("5_6q0h3")

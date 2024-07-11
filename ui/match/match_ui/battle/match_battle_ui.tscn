@@ -12,14 +12,17 @@
 line_spacing = 0.0
 font = ExtResource("3_702mv")
 font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vacpd"]
 font = ExtResource("3_702mv")
 font_size = 22
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hnpls"]
 font = ExtResource("3_702mv")
 font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fwvgt"]
 texture = ExtResource("4_uvpi0")
