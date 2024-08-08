@@ -43,3 +43,5 @@ func _on_state_changed(session_data: Dictionary):
 		Global.current_session.opponent.raw_hero_list = opponent_hero_list
 		Global.current_session.state = new_state
 		started = true
+	elif new_state.name == "END":
+		match_manager.change_match_state(EndState.new(match_manager, new_state))

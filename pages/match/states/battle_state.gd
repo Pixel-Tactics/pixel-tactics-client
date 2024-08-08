@@ -28,6 +28,7 @@ func _init(init_match_manager: MatchManager):
 	map_manager.move_tile_selected.connect(_on_hero_move.bind())
 	map_manager.attack_tile_selected.connect(_on_hero_attack.bind())
 	match_api.action_accepted.connect(_on_action_accepted.bind())
+	match_api.session_get.connect(_on_session_get.bind())
 	match_api.state_changed.connect(_on_state_changed.bind())
 
 func update():
@@ -168,8 +169,8 @@ func _on_hero_attack(target_pos: Vector2i):
 func _on_action_accepted(action_data: Dictionary):
 	var order = action_data["order"]
 	if update_type_count[UpdateType.ACTION] != order:
-		# TODO: Add get session
 		push_warning("order not matching, getting session..")
+		_get_session()
 		return
 	update_type_count[UpdateType.ACTION] += 1
 	update_list.push_back([UpdateType.ACTION, action_data])
@@ -177,22 +178,11 @@ func _on_action_accepted(action_data: Dictionary):
 func _on_state_changed(session_data: Dictionary):
 	var order = len(session_data["actionLog"])
 	if update_type_count[UpdateType.ACTION] != order:
-		# TODO: Add get session
 		push_warning("order not matching, getting session..")
+		_get_session()
 		return
 	update_type_count[UpdateType.STATE_CHANGE] += 1
 	update_list.push_back([UpdateType.STATE_CHANGE, session_data])
-
-#func _on_attack_accepted(action_specific: Dictionary):
-	#if Global.current_session == null:
-		#return
-	#var player = match_manager.get_opponent_by_id(action_specific["playerId"])
-	#if not player:
-		#return
-	#var target = player.get_hero_from_name(action_specific["target"])
-	#if not target:
-		#return
-	#target.damage_hero(action_specific["damage"])
 
 func _on_end_turn():
 	match_manager.match_api.send_request("END_TURN")
@@ -207,3 +197,11 @@ func _state_change(session_data: Dictionary):
 		ui_manager.current_ui.change_turn(match_manager.is_player_active(), new_state.deadline)
 	elif new_state.name == "END":
 		match_manager.change_match_state(EndState.new(match_manager, new_state))
+
+func _get_session():
+	match_manager.match_api.send_request("GET_SESSION", {})
+
+func _on_session_get(session_data: Dictionary):
+	push_warning(session_data)
+	session_data["actionLog"]
+	

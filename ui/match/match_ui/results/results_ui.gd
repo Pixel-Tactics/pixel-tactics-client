@@ -18,10 +18,15 @@ var winning_label_text = {
 
 func _ready():
 	var winner_id = Global.last_session.state["winnerId"]
+	var is_draw = winner_id == "draw"
 	var is_player_win = (Global.last_session.player.id == winner_id)
 	var opponent = Global.last_session.opponent.id
 	
-	winning_label.text = winning_label_text[is_player_win]
+	if is_draw:
+		winning_label.text = "DRAW"
+		set_rewards(RewardDto.new())
+	else:
+		winning_label.text = winning_label_text[is_player_win]
 	opponent_label.text = "AGAINST " + opponent
 	
 	menu_button.pressed.connect(func(): back_to_menu.emit())
